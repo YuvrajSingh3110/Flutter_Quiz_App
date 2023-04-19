@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'firedb.dart';
 
@@ -30,5 +32,22 @@ Future<User?> signInWithGoogle() async {
   } catch (e) {
     print("Error Occurred!");
     print(e);
+  }
+}
+
+//if user exists already
+Future<bool> getUser() async{
+  final User? currentUser = _auth.currentUser;
+  String user = "";
+  
+  await FirebaseFirestore.instance.collection("users").doc(currentUser!.uid).get().then((value) =>
+  {
+    user = value.data().toString()  //if user does not exists it returns null
+  });
+  if(user == "null"){
+    return false;
+  }
+  else {
+    return true;
   }
 }

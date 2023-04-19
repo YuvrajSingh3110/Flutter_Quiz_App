@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:quiz_app/services/auth.dart';
+import 'package:quiz_app/services/internetConnection.dart';
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
@@ -10,6 +13,21 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //if status of internet changes
+    InternetConnectionChecker().onStatusChange.listen((status) {
+      final connected = status == InternetConnectionStatus;
+      showSimpleNotification(
+          Text(connected
+              ? "Connected To Internet"
+              : "Not Connected To Internet"),
+          background: connected ? Colors.green : Colors.red);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,12 +44,15 @@ class _loginState extends State<login> {
               ),
               const Text(
                 "Welcome To Quiz App",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,),
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              SignInButton(Buttons.GoogleDark, onPressed: () async{
+              SignInButton(Buttons.GoogleDark, onPressed: () async {
                 await signInWithGoogle();
               }),
             ],
