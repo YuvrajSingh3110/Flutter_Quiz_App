@@ -5,14 +5,14 @@ import 'package:overlay_support/overlay_support.dart';
 import 'package:quiz_app/services/auth.dart';
 import 'package:quiz_app/services/internetConnection.dart';
 
-class login extends StatefulWidget {
-  const login({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
-  State<login> createState() => _loginState();
+  State<Login> createState() => _LoginState();
 }
 
-class _loginState extends State<login> {
+class _LoginState extends State<Login> {
   @override
   void initState() {
     // TODO: implement initState

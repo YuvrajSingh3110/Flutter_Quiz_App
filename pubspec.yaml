@@ -43,6 +43,7 @@ dependencies:
   cloud_firestore: any
   internet_connection_checker: any
   overlay_support: any
+  carousel_slider: any
 
 dev_dependencies:
   flutter_test:
