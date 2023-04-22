@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:quiz_app/Views/login.dart';
 import 'package:quiz_app/views/home.dart';
+import 'package:quiz_app/views/quiz_intro.dart';
 
 Future <void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        home: Home(),
+        home: QuizIntro(),
       ),
     );
   }
