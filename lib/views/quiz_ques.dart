@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/widgets/lifelineSideBar.dart';
 
 class QuizQues extends StatefulWidget {
   const QuizQues({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class _QuizQuesState extends State<QuizQues> {
         )
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      drawer: const Drawer(),
+      drawer: LifelineDrawer(),
       body: Container(
         color: Colors.orangeAccent,
         width: MediaQuery.of(context).size.width,
