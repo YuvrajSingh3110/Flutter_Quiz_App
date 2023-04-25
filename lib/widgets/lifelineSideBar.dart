@@ -13,11 +13,16 @@ class _LifelineDrawerState extends State<LifelineDrawer> {
     return Drawer(
       child: SafeArea(
         child: Column(children: [
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           Container(
             padding: const EdgeInsets.all(10),
             margin: const EdgeInsets.all(3),
-            child: const Text("LifeLine", style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),),
+            child: const Text(
+              "LifeLine",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+            ),
           ),
           Row(
             children: [
@@ -34,7 +39,9 @@ class _LifelineDrawerState extends State<LifelineDrawer> {
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   const Text(
                     "Audience\n Poll",
                     textAlign: TextAlign.center,
@@ -54,7 +61,9 @@ class _LifelineDrawerState extends State<LifelineDrawer> {
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   const Text(
                     "Audience\n Poll",
                     textAlign: TextAlign.center,
@@ -74,7 +83,9 @@ class _LifelineDrawerState extends State<LifelineDrawer> {
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   const Text(
                     "Audience\n Poll",
                     textAlign: TextAlign.center,
@@ -94,7 +105,9 @@ class _LifelineDrawerState extends State<LifelineDrawer> {
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(height: 5,),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   const Text(
                     "Audience\n Poll",
                     textAlign: TextAlign.center,
@@ -111,6 +124,44 @@ class _LifelineDrawerState extends State<LifelineDrawer> {
             endIndent: 5,
             thickness: 3,
             color: Colors.black26,
+          ),
+          Container(
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.all(3),
+            child: const Text(
+              "Prizes",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+            ),
+          ),
+          SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
+            child: SizedBox(
+              height: 550,
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  reverse: true,
+                  itemCount: 15,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      leading: Text(
+                        "${index + 1}.",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                            color: Colors.grey),
+                      ),
+                      title: Text(
+                        "Rs. ${(index + 1) * 5000}",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 18),
+                      ),
+                      trailing: const Icon(
+                        Icons.circle,
+                        color: Colors.orange,
+                      ),
+                    );
+                  }),
+            ),
           )
         ]),
       ),
