@@ -5,6 +5,7 @@ import 'package:quiz_app/Views/login.dart';
 import 'package:quiz_app/views/home.dart';
 import 'package:quiz_app/views/quiz_intro.dart';
 import 'package:quiz_app/views/quiz_ques.dart';
+import 'package:quiz_app/views/winner.dart';
 
 Future <void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        home: QuizQues(),
+        home: Winner(),
       ),
     );
   }
