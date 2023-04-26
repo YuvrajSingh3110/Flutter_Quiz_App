@@ -5,6 +5,7 @@ import 'package:quiz_app/Views/login.dart';
 import 'package:quiz_app/services/localdb.dart';
 import 'package:quiz_app/views/home.dart';
 import 'package:quiz_app/views/looser.dart';
+import 'package:quiz_app/views/profile.dart';
 import 'package:quiz_app/views/quiz_intro.dart';
 import 'package:quiz_app/views/quiz_ques.dart';
 import 'package:quiz_app/views/winner.dart';
@@ -41,7 +42,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        home: isLogin ? Home() : Looser(),
+        home: isLogin ? Home() : Profile(),
       ),
     );
   }
