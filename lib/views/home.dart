@@ -274,7 +274,7 @@ class _HomeState extends State<Home> {
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Column(
-                                  children: [
+                                  children: const [
                                     Icon(
                                       Icons.lock,
                                       size: 50,
