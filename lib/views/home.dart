@@ -3,6 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:quiz_app/widgets/sideNavBar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import '../services/localdb.dart';
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -11,12 +13,48 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  String name = "User Name";
+  String money = "---";
+  String rank = "---";
+  String profileUrl = "";
+
+  getUserDetails() async{
+    await LocalDB.getName().then((value) {
+      setState(() {
+        name = value.toString();
+      });
+    });
+    await LocalDB.getMoney().then((value) {
+      setState(() {
+        money = value.toString();
+      });
+    });
+    await LocalDB.getRank().then((value) {
+      setState(() {
+        rank = value.toString();
+      });
+    });
+    await LocalDB.getUrl().then((value) {
+      setState(() {
+        profileUrl = value.toString();
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUserDetails();
+  }
+
   int currentPos = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.orangeAccent),
-      drawer: SideNavBar(),
+      drawer: SideNavBar(name, money, rank, profileUrl),
       body: SingleChildScrollView(
         physics: ClampingScrollPhysics(),
         child: Container(
@@ -53,7 +91,7 @@ class _HomeState extends State<Home> {
                   );
                 }).toList(),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Container(

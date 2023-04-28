@@ -22,7 +22,7 @@ class FireDB {
       }).then((value) async{
         await LocalDB.saveLevel("0");
         await LocalDB.saveMoney("6969699");
-        await LocalDB.saveRank("88");
+        await LocalDB.saveRank("-");
         print("User Registered Successfully");
       });
     }

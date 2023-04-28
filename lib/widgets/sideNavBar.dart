@@ -5,7 +5,11 @@ import 'package:quiz_app/services/auth.dart';
 import '../views/home.dart';
 
 class SideNavBar extends StatelessWidget {
-  const SideNavBar({Key? key}) : super(key: key);
+  String name;
+  String money;
+  String rank;
+  String profileUrl;
+  SideNavBar(this.name, this.money, this.rank, this.profileUrl);
 
   @override
   Widget build(BuildContext context) {
@@ -18,24 +22,24 @@ class SideNavBar extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Row(
                 children: [
-                  CircleAvatar(radius: 40, backgroundColor: Colors.white),
-                  SizedBox(width: 20),
+                  CircleAvatar(backgroundImage: NetworkImage(profileUrl) ,radius: 40),
+                  const SizedBox(width: 20),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Yuvraj Singh",
-                        style: TextStyle(
+                        name,
+                        style: const TextStyle(
                             fontSize: 25,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Text(
-                        "Rs. 1lac",
-                        style: TextStyle(
+                        "Rs. $money",
+                        style: const TextStyle(
                             fontSize: 20,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
@@ -45,20 +49,20 @@ class SideNavBar extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
               padding: const EdgeInsets.only(left: 20),
               child: Text(
-                "Leaderboard - 1st pos",
-                style: TextStyle(
+                "Leaderboard - $rank th pos",
+                style: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             listItem(
