@@ -30,6 +30,9 @@ Future<User?> signInWithGoogle() async {
     assert(currentUser!.uid == user!.uid);
     print(user);
     await FireDB().createNewUser(user!.displayName.toString(), user.email.toString(), user.photoURL.toString(), user.uid.toString());
+    await LocalDB.saveUserId(user.uid);
+    await LocalDB.saveName(user.displayName.toString());
+    await LocalDB.saveUrl(user.photoURL.toString());
   } catch (e) {
     print("Error Occurred!");
     print(e);
