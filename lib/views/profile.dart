@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+
+  String name;
+  String profileUrl;
+  String rank;
+  String level;
+  String money;
+  Profile({
+    required this.name,
+    required this.profileUrl,
+    required this.rank,
+    required this.level,
+    required this.money,
+});
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -12,7 +24,6 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back_ios),
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.share)),
           IconButton(onPressed: () {}, icon: Icon(Icons.person_add))
@@ -43,7 +54,7 @@ class _ProfileState extends State<Profile> {
                     children: [
                       CircleAvatar(
                           backgroundImage: NetworkImage(
-                              "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1331&q=80"),
+                              widget.profileUrl),
                           radius: 50),
                       Positioned(
                         right: 0.0,
@@ -63,7 +74,7 @@ class _ProfileState extends State<Profile> {
                     height: 10,
                   ),
                   Text(
-                    "Yato",
+                    widget.name,
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   ),
                   SizedBox(
@@ -75,7 +86,7 @@ class _ProfileState extends State<Profile> {
                       Column(
                         children: [
                           Text(
-                            "30",
+                            widget.level,
                             style: TextStyle(
                                 fontSize: 40,
                                 color: Colors.white.withOpacity(0.9),
@@ -91,7 +102,7 @@ class _ProfileState extends State<Profile> {
                       Column(
                         children: [
                           Text(
-                            "#333",
+                            "#${widget.rank}",
                             style: TextStyle(
                                 fontSize: 40,
                                 color: Colors.white.withOpacity(0.9),

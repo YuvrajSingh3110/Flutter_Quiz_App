@@ -18,6 +18,7 @@ class _HomeState extends State<Home> {
   String money = "---";
   String rank = "---";
   String profileUrl = "";
+  String level = "---";
 
   getUserDetails() async{
     await LocalDB.getName().then((value) {
@@ -40,6 +41,11 @@ class _HomeState extends State<Home> {
         profileUrl = value.toString();
       });
     });
+    await LocalDB.getLevel().then((value) {
+      setState(() {
+        level = value.toString();
+      });
+    });
   }
 
   @override
@@ -54,7 +60,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.orangeAccent),
-      drawer: SideNavBar(name, money, rank, profileUrl),
+      drawer: SideNavBar(name, money, rank, profileUrl,level),
       body: SingleChildScrollView(
         physics: ClampingScrollPhysics(),
         child: Container(

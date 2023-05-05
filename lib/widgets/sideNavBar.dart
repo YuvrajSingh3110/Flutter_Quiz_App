@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/Views/login.dart';
 import 'package:quiz_app/services/auth.dart';
 import 'package:quiz_app/views/home.dart';
+import 'package:quiz_app/views/profile.dart';
 //import 'package:quiz_app/views/Login.dart';
-
 
 class SideNavBar extends StatelessWidget {
   String name;
   String money;
   String rank;
   String profileUrl;
-  SideNavBar(@required this.name, @required this.money, @required this.rank, @required this.profileUrl);
+  String level;
+  SideNavBar(@required this.name, @required this.money, @required this.rank,
+      @required this.profileUrl, @required this.level);
 
   @override
   Widget build(BuildContext context) {
@@ -19,48 +21,61 @@ class SideNavBar extends StatelessWidget {
         color: const Color.fromRGBO(255, 165, 0, 40),
         child: ListView(
           children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: Row(
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Profile(name: name, profileUrl: profileUrl, rank: rank, level: level, money: money,)));
+              },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(backgroundImage: NetworkImage(profileUrl) ,radius: 40),
-                  const SizedBox(width: 20),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        name,
-                        style: const TextStyle(
-                            fontSize: 25,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "Rs. $money",
-                        style: const TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  )
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                            backgroundImage: NetworkImage(profileUrl),
+                            radius: 40),
+                        const SizedBox(width: 20),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              name,
+                              style: const TextStyle(
+                                  fontSize: 25,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Rs. $money",
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Text(
+                      "Leaderboard - $rank th pos",
+                      style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ],
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              padding: const EdgeInsets.only(left: 20),
-              child: Text(
-                "Leaderboard - $rank th pos",
-                style: const TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(
@@ -125,7 +140,7 @@ class SideNavBar extends StatelessWidget {
               fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.white70)),
-      onTap: () async{
+      onTap: () async {
         await signOut();
         Navigator.pushReplacement(context, path);
       },
