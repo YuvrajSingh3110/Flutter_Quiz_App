@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:quiz_app/services/auth.dart';
-
 import 'localdb.dart';
 
 class FireDB {

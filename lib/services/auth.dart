@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:quiz_app/services/localdb.dart';
+import 'localdb.dart';
 import 'firedb.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -44,7 +43,7 @@ Future<bool> getUser() async{
   final User? currentUser = _auth.currentUser;
   String user = "";
   
-  await FirebaseFirestore.instance.collection("users").doc(currentUser!.uid).get().then((value) =>
+  await FirebaseFirestore.instance.collection("User").doc(currentUser!.uid).get().then((value) =>
   {
     user = value.data().toString()  //if user does not exists it returns null
   });

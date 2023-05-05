@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/Views/login.dart';
 import 'package:quiz_app/services/auth.dart';
+import 'package:quiz_app/views/home.dart';
+//import 'package:quiz_app/views/Login.dart';
 
-import '../views/home.dart';
 
 class SideNavBar extends StatelessWidget {
   String name;
   String money;
   String rank;
   String profileUrl;
-  SideNavBar(this.name, this.money, this.rank, this.profileUrl);
+  SideNavBar(@required this.name, @required this.money, @required this.rank, @required this.profileUrl);
 
   @override
   Widget build(BuildContext context) {
