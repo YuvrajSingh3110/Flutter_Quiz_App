@@ -1,12 +1,12 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalDB{
-  static final uidkey = "nigeagfogwwab";
-  static final lKey = "iiawbbuevbndmvbds";
-  static final mKey = "huiuigpauwe";
-  static final rKey = "bhuavbkhvbhdsv";
-  static final nKey = "huewahjkbvndmbvh";
-  static final pKey = "niueiaghjbvnmdb";
+  static const uidkey = "nigeagfogwwab";
+  static const lKey = "iiawbbuevbndmvbds";
+  static const mKey = "huiuigpauwe";
+  static const rKey = "bhuavbkhvbhdsv";
+  static const nKey = "huewahjkbvndmbvh";
+  static const pKey = "niueiaghjbvnmdb";
 
 
   static Future<bool> saveUserId(String uid) async{
@@ -17,7 +17,7 @@ class LocalDB{
   //gets uid of user
   static Future<String?> getUserId() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return await preferences.getString(uidkey);
+    return preferences.getString(uidkey);
   }
 
   static Future<bool> saveMoney(String money) async{
@@ -28,7 +28,7 @@ class LocalDB{
   //gets uid of user
   static Future<String?> getMoney() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return await preferences.getString(mKey);
+    return preferences.getString(mKey);
   }
 
   static Future<bool> saveName(String name) async{
@@ -39,7 +39,7 @@ class LocalDB{
   //gets uid of user
   static Future<String?> getName() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return await preferences.getString(nKey);
+    return preferences.getString(nKey);
   }
 
   static Future<bool> saveUrl(String profileUrl) async{
@@ -50,7 +50,7 @@ class LocalDB{
   //gets uid of user
   static Future<String?> getUrl() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return await preferences.getString(pKey);
+    return preferences.getString(pKey);
   }
 
   static Future<bool> saveLevel(String level) async{
@@ -61,7 +61,7 @@ class LocalDB{
   //gets uid of user
   static Future<String?> getLevel() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return await preferences.getString(lKey);
+    return preferences.getString(lKey);
   }
 
   static Future<bool> saveRank(String rank) async{
@@ -72,6 +72,6 @@ class LocalDB{
   //gets uid of user
   static Future<String?> getRank() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return await preferences.getString(rKey);
+    return preferences.getString(rKey);
   }
 }

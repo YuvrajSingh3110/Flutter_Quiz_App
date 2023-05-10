@@ -13,14 +13,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   String name = "User Name";
   String money = "---";
   String rank = "---";
   String profileUrl = "";
   String level = "---";
 
-  getUserDetails() async{
+  getUserDetails() async {
     await LocalDB.getName().then((value) {
       setState(() {
         name = value.toString();
@@ -60,7 +59,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.orangeAccent),
-      drawer: SideNavBar(name, money, rank, profileUrl,level),
+      drawer: SideNavBar(name, money, rank, profileUrl, level),
       body: SingleChildScrollView(
         physics: ClampingScrollPhysics(),
         child: Container(
@@ -101,7 +100,31 @@ class _HomeState extends State<Home> {
                 height: 15,
               ),
               Container(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.purpleAccent,
+                      radius: 35,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.blueAccent,
+                      radius: 35,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.greenAccent,
+                      radius: 35,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.yellowAccent,
+                      radius: 35,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: Row(
                   children: [
                     Flexible(
@@ -111,53 +134,14 @@ class _HomeState extends State<Home> {
                           children: [
                             Card(
                               elevation: 10,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
                               child: Container(
-                                height: 200,
+                                height: 180,
                                 child: Image.network(
                                   "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                            Positioned(
-                                top: 0,
-                                bottom: 0,
-                                left: 0,
-                                right: 0,
-                                child: Container(
-                                  color: Colors.black38,
-                                )),
-                            Padding(
-                              padding: EdgeInsets.all(40),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Column(
-                                  children: [
-                                    Icon(
-                                      Icons.lock,
-                                      size: 50,
-                                      color: Colors.white,
-                                    ),
-                                    Text(
-                                      "Rs.50,000",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
-                                          color: Colors.white),
-                                    ),
-                                    Text(
-                                      "Flutter Quiz",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                          color: Colors.white),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            )
                           ],
                         )),
                     SizedBox(
@@ -170,53 +154,14 @@ class _HomeState extends State<Home> {
                           children: [
                             Card(
                               elevation: 10,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
                               child: Container(
-                                height: 200,
+                                height: 180,
                                 child: Image.network(
                                   "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                            Positioned(
-                                top: 0,
-                                bottom: 0,
-                                left: 0,
-                                right: 0,
-                                child: Container(
-                                  color: Colors.black38,
-                                )),
-                            Padding(
-                              padding: EdgeInsets.all(40),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Column(
-                                  children: [
-                                    Icon(
-                                      Icons.lock,
-                                      size: 50,
-                                      color: Colors.white,
-                                    ),
-                                    Text(
-                                      "Rs.50,000",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
-                                          color: Colors.white),
-                                    ),
-                                    Text(
-                                      "Flutter Quiz",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                          color: Colors.white),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            )
                           ],
                         ))
                   ],
@@ -226,7 +171,7 @@ class _HomeState extends State<Home> {
                 height: 15,
               ),
               Container(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: Row(
                   children: [
                     Flexible(
@@ -236,53 +181,14 @@ class _HomeState extends State<Home> {
                           children: [
                             Card(
                               elevation: 10,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
                               child: Container(
-                                height: 200,
+                                height: 180,
                                 child: Image.network(
                                   "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                            Positioned(
-                                top: 0,
-                                bottom: 0,
-                                left: 0,
-                                right: 0,
-                                child: Container(
-                                  color: Colors.black38,
-                                )),
-                            Padding(
-                              padding: EdgeInsets.all(40),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Column(
-                                  children: [
-                                    Icon(
-                                      Icons.lock,
-                                      size: 50,
-                                      color: Colors.white,
-                                    ),
-                                    Text(
-                                      "Rs.50,000",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
-                                          color: Colors.white),
-                                    ),
-                                    Text(
-                                      "Flutter Quiz",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                          color: Colors.white),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            )
                           ],
                         )),
                     SizedBox(
@@ -295,112 +201,397 @@ class _HomeState extends State<Home> {
                           children: [
                             Card(
                               elevation: 10,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20)),
                               child: Container(
-                                height: 200,
+                                height: 180,
                                 child: Image.network(
                                   "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-                            Positioned(
-                                top: 0,
-                                bottom: 0,
-                                left: 0,
-                                right: 0,
-                                child: Container(
-                                  color: Colors.black38,
-                                )),
-                            Padding(
-                              padding: EdgeInsets.all(40),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Column(
-                                  children: const [
-                                    Icon(
-                                      Icons.lock,
-                                      size: 50,
-                                      color: Colors.white,
-                                    ),
-                                    Text(
-                                      "Rs.50,000",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
-                                          color: Colors.white),
-                                    ),
-                                    Text(
-                                      "Flutter Quiz",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                          color: Colors.white),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            )
                           ],
                         )),
                   ],
                 ),
               ),
-              Stack(
-                children: [
-                  Card(
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 150,
-                      child: Image.network(
-                        "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
-                        fit: BoxFit.cover,
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Stack(
+                  children: [
+                    Card(
+                      elevation: 10,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 120,
+                        child: Image.network(
+                          "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                          fit: BoxFit.cover,
+                        ),
                       ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Top Players In This Week",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
+                    ),
+                    Text(
+                      "Last updated 5 days ago",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        CircleAvatar(backgroundColor: Colors.grey, radius: 50),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Yuvraj Singh",
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Player ID- 100",
+                            ),
+                            Text(
+                              "Money- Rs, 10 Crore",
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: Text(
+                        "Unlock New Quizzes",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.w600),
+                      )),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Row(
+                      children: [
+                        Flexible(
+                            fit: FlexFit.tight,
+                            flex: 1,
+                            child: Stack(
+                              children: [
+                                Card(
+                                  elevation: 10,
+                                  child: Container(
+                                    height: 180,
+                                    child: Image.network(
+                                      "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Flexible(
+                            fit: FlexFit.tight,
+                            flex: 1,
+                            child: Stack(
+                              children: [
+                                Card(
+                                  elevation: 10,
+                                  child: Container(
+                                    height: 180,
+                                    child: Image.network(
+                                      "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ))
+                      ],
                     ),
                   ),
-                  Positioned(
-                      top: 0,
-                      bottom: 15,
-                      left: 5,
-                      right: 5,
-                      child: Container(
-                        color: Colors.black38,
-                      )),
-                  Padding(
-                    padding: EdgeInsets.all(40),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Column(
-                        children: [
-                          Icon(
-                            Icons.lock,
-                            size: 50,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            "Rs.50,000",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                                color: Colors.white),
-                          ),
-                          Text(
-                            "Flutter Quiz",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                                color: Colors.white),
-                          )
-                        ],
-                      ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Row(
+                      children: [
+                        Flexible(
+                            fit: FlexFit.tight,
+                            flex: 1,
+                            child: Stack(
+                              children: [
+                                Card(
+                                  elevation: 10,
+                                  child: Container(
+                                    height: 180,
+                                    child: Image.network(
+                                      "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Flexible(
+                            fit: FlexFit.tight,
+                            flex: 1,
+                            child: Stack(
+                              children: [
+                                Card(
+                                  elevation: 10,
+                                  child: Container(
+                                    height: 180,
+                                    child: Image.network(
+                                      "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ],
                     ),
-                  )
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Row(
+                      children: [
+                        Flexible(
+                            fit: FlexFit.tight,
+                            flex: 1,
+                            child: Stack(
+                              children: [
+                                Card(
+                                  elevation: 10,
+                                  child: Container(
+                                    height: 180,
+                                    child: Image.network(
+                                      "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Flexible(
+                            fit: FlexFit.tight,
+                            flex: 1,
+                            child: Stack(
+                              children: [
+                                Card(
+                                  elevation: 10,
+                                  child: Container(
+                                    height: 180,
+                                    child: Image.network(
+                                      "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ))
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Row(
+                      children: [
+                        Flexible(
+                            fit: FlexFit.tight,
+                            flex: 1,
+                            child: Stack(
+                              children: [
+                                Card(
+                                  elevation: 10,
+                                  child: Container(
+                                    height: 180,
+                                    child: Image.network(
+                                      "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Flexible(
+                            fit: FlexFit.tight,
+                            flex: 1,
+                            child: Stack(
+                              children: [
+                                Card(
+                                  elevation: 10,
+                                  child: Container(
+                                    height: 180,
+                                    child: Image.network(
+                                      "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Row(
+                      children: [
+                        Flexible(
+                            fit: FlexFit.tight,
+                            flex: 1,
+                            child: Stack(
+                              children: [
+                                Card(
+                                  elevation: 10,
+                                  child: Container(
+                                    height: 180,
+                                    child: Image.network(
+                                      "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Flexible(
+                            fit: FlexFit.tight,
+                            flex: 1,
+                            child: Stack(
+                              children: [
+                                Card(
+                                  elevation: 10,
+                                  child: Container(
+                                    height: 180,
+                                    child: Image.network(
+                                      "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ))
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: Row(
+                      children: [
+                        Flexible(
+                            fit: FlexFit.tight,
+                            flex: 1,
+                            child: Stack(
+                              children: [
+                                Card(
+                                  elevation: 10,
+                                  child: Container(
+                                    height: 180,
+                                    child: Image.network(
+                                      "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Flexible(
+                            fit: FlexFit.tight,
+                            flex: 1,
+                            child: Stack(
+                              children: [
+                                Card(
+                                  elevation: 10,
+                                  child: Container(
+                                    height: 180,
+                                    child: Image.network(
+                                      "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Stack(
+                      children: [
+                        Card(
+                          elevation: 10,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 120,
+                            child: Image.network(
+                              "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),

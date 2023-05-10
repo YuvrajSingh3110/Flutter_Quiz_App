@@ -3,7 +3,6 @@ import 'package:quiz_app/Views/login.dart';
 import 'package:quiz_app/services/auth.dart';
 import 'package:quiz_app/views/home.dart';
 import 'package:quiz_app/views/profile.dart';
-//import 'package:quiz_app/views/Login.dart';
 
 class SideNavBar extends StatelessWidget {
   String name;
