@@ -592,6 +592,119 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
+              SizedBox(height: 15,),
+              CarouselSlider(
+                options: CarouselOptions(
+                    height: 100.0,
+                    autoPlay: true,
+                    enlargeCenterPage: true,
+                    scrollPhysics: BouncingScrollPhysics(),
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        currentPos = index;
+                      });
+                    },
+                    autoPlayCurve: Curves.fastOutSlowIn),
+                items: [1, 2, 3, 4, 5].map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
+                          alignment: Alignment.center,
+                          width: MediaQuery.of(context).size.width,
+                          margin: EdgeInsets.symmetric(horizontal: 5.0),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.amber),
+                          child: Text(
+                            'text $i',
+                            style: TextStyle(fontSize: 16.0),
+                          ));
+                    },
+                  );
+                }).toList(),
+              ),
+              SizedBox(height: 15,),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.purpleAccent,
+                      radius: 35,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.blueAccent,
+                      radius: 35,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.greenAccent,
+                      radius: 35,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.purpleAccent,
+                      radius: 35,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.blueAccent,
+                      radius: 35,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.greenAccent,
+                      radius: 35,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.purpleAccent,
+                      radius: 35,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.blueAccent,
+                      radius: 35,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.greenAccent,
+                      radius: 35,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.purpleAccent,
+                      radius: 35,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.blueAccent,
+                      radius: 35,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.greenAccent,
+                      radius: 35,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 10,),
             ],
           ),
         ),
