@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:quiz_app/views/quiz_intro.dart';
 import 'package:quiz_app/widgets/sideNavBar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -50,12 +51,12 @@ class _HomeState extends State<Home> {
     });
   }
 
-  getQuiz() async{
+  getQuiz() async {
     await HomeFire.getQuizzes().then((returned_quizzes) => {
-      setState((){
-        quizzes = returned_quizzes;
-      })
-    });
+          setState(() {
+            quizzes = returned_quizzes;
+          })
+        });
   }
 
   @override
@@ -262,7 +263,7 @@ class _HomeState extends State<Home> {
                       style:
                           TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(
@@ -294,7 +295,7 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Column(
@@ -302,37 +303,56 @@ class _HomeState extends State<Home> {
                 children: [
                   Container(
                       padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: Text(
+                      child: const Text(
                         "Unlock New Quizzes",
                         textAlign: TextAlign.start,
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.w600),
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     child: Row(
                       children: [
                         Flexible(
                             fit: FlexFit.tight,
                             flex: 1,
-                            child: Stack(
-                              children: [
-                                Card(
-                                  elevation: 10,
-                                  child: Container(
-                                    height: 180,
-                                    child: Image.network(
-                                      (quizzes[0])["quiz_thumbnail"],
-                                      fit: BoxFit.cover,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => QuizIntro(
+                                              QuizName: quizzes[0]["quiz_name"],
+                                              QuizImgUrl:
+                                                  "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c2NpZW5jZSUyMHF1aXp8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+                                              QuizAbout: quizzes[0]["topics"],
+                                              QuizDuration: quizzes[0]
+                                                  ["duration"],
+                                              QuizTopics: quizzes[0]
+                                                  ["about_quiz"],
+                                              QuizID: quizzes[0]["QuizID"],
+                                            )));
+                              },
+                              child: Stack(
+                                children: [
+                                  Card(
+                                    elevation: 10,
+                                    child: Container(
+                                      height: 180,
+                                      child: Image.network(
+                                        (quizzes[0])["quiz_thumbnail"],
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             )),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Flexible(
@@ -604,7 +624,9 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               CarouselSlider(
                 options: CarouselOptions(
                     height: 100.0,
@@ -635,26 +657,8 @@ class _HomeState extends State<Home> {
                   );
                 }).toList(),
               ),
-              SizedBox(height: 15,),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.purpleAccent,
-                      radius: 35,
-                    ),
-                    CircleAvatar(
-                      backgroundColor: Colors.blueAccent,
-                      radius: 35,
-                    ),
-                    CircleAvatar(
-                      backgroundColor: Colors.greenAccent,
-                      radius: 35,
-                    ),
-                  ],
-                ),
+              SizedBox(
+                height: 15,
               ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10),
@@ -716,7 +720,29 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              SizedBox(height: 10,),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.purpleAccent,
+                      radius: 35,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.blueAccent,
+                      radius: 35,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.greenAccent,
+                      radius: 35,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
             ],
           ),
         ),
