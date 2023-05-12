@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:quiz_app/widgets/sideNavBar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import '../services/home_fire.dart';
 import '../services/localdb.dart';
 
 class Home extends StatefulWidget {
@@ -18,6 +19,8 @@ class _HomeState extends State<Home> {
   String rank = "---";
   String profileUrl = "";
   String level = "---";
+
+  late List quizzes;
 
   getUserDetails() async {
     await LocalDB.getName().then((value) {
@@ -47,11 +50,20 @@ class _HomeState extends State<Home> {
     });
   }
 
+  getQuiz() async{
+    await HomeFire.getQuizzes().then((returned_quizzes) => {
+      setState((){
+        quizzes = returned_quizzes;
+      })
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getUserDetails();
+    getQuiz();
   }
 
   int currentPos = 0;
@@ -313,7 +325,7 @@ class _HomeState extends State<Home> {
                                   child: Container(
                                     height: 180,
                                     child: Image.network(
-                                      "https://img.freepik.com/free-vector/curiosity-search-concept-illustration_114360-11031.jpg?w=740&t=st=1682102462~exp=1682103062~hmac=9b575b837af38f4f7619cfa6f42ea5d436db2b50c9b2509c8d5540910f3d37d5",
+                                      (quizzes[0])["quiz_thumbnail"],
                                       fit: BoxFit.cover,
                                     ),
                                   ),
