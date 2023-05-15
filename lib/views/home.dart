@@ -327,16 +327,12 @@ class _HomeState extends State<Home> {
                                     MaterialPageRoute(
                                         builder: (context) => QuizIntro(
                                               QuizName: quizzes[0]["quiz_name"],
-                                              QuizImgUrl:
-                                                  "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c2NpZW5jZSUyMHF1aXp8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+                                              QuizImgUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c2NpZW5jZSUyMHF1aXp8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
                                               QuizAbout: quizzes[0]["topics"],
-                                              QuizDuration: quizzes[0]
-                                                  ["duration"],
-                                              QuizTopics: quizzes[0]
-                                                  ["about_quiz"],
+                                              QuizDuration: quizzes[0]["duration"],
+                                              QuizTopics: quizzes[0]["about_quiz"],
                                               QuizID: quizzes[0]["QuizID"],
-                                              QuizPrice: quizzes[0]
-                                                  ["quiz_price"],
+                                              QuizPrice: quizzes[0]["quiz_price"],
                                             )));
                               },
                               child: Stack(

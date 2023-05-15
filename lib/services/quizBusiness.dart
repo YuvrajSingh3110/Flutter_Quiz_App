@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quiz_app/services/localdb.dart';
 
 class quizBusiness{
-  static buyQuiz({required int quizPrice, required String quizId}) async{
-    String? userId = "";
+  static Future<bool> buyQuiz({required int quizPrice, required String quizId}) async{
+    String userId = "";
     bool enoughMoney = false;
-    await LocalDB.getUserId().then((value) => {
-      userId = value
+    await LocalDB.getUserId().then((uID) => {
+      userId = uID!
     });
-    FirebaseFirestore.instance.collection("User").doc(userId).get().then((user) => {
+    await FirebaseFirestore.instance.collection("User").doc(userId).get().then((user) => {
       enoughMoney = quizPrice <= int.parse(user.data()!["money"])
     });
 
@@ -17,8 +17,10 @@ class quizBusiness{
         {"unlocked_at" : DateTime.now()}
       );
       print("QUIZ IS UNLOCKED");
+      return true;
     }else{
       print("YOU BROKE MY BOY!!");
+      return false;
     }
   }
 }
