@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/services/checkQuizUnlock.dart';
+import 'package:quiz_app/services/quizBusiness.dart';
 
 class QuizIntro extends StatefulWidget {
   String QuizName;
@@ -8,6 +9,7 @@ class QuizIntro extends StatefulWidget {
   String QuizDuration;
   String QuizAbout;
   String QuizID;
+  String QuizPrice;
 
   QuizIntro(
       {required this.QuizName,
@@ -15,7 +17,8 @@ class QuizIntro extends StatefulWidget {
       required this.QuizTopics,
       required this.QuizDuration,
       required this.QuizAbout,
-      required this.QuizID});
+      required this.QuizID,
+      required this.QuizPrice});
 
   @override
   State<QuizIntro> createState() => _QuizIntroState();
@@ -45,7 +48,9 @@ class _QuizIntroState extends State<QuizIntro> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: ElevatedButton(
         child: Text(quizUnlock ? "START" : "UNLOCK QUIZ"),
-        onPressed: () {},
+        onPressed: () {
+          quizUnlock ? print("QUIZ IS ALREADY UNLOCKED") : quizBusiness.buyQuiz(quizPrice: int.parse(widget.QuizPrice), quizId: widget.QuizID);
+        },
       ),
       body: SingleChildScrollView(
         child: Container(

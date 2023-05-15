@@ -335,6 +335,8 @@ class _HomeState extends State<Home> {
                                               QuizTopics: quizzes[0]
                                                   ["about_quiz"],
                                               QuizID: quizzes[0]["QuizID"],
+                                              QuizPrice: quizzes[0]
+                                                  ["quiz_price"],
                                             )));
                               },
                               child: Stack(
