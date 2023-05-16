@@ -25,14 +25,13 @@ class QuizIntro extends StatefulWidget {
 }
 
 class _QuizIntroState extends State<QuizIntro> {
-
   bool quizUnlock = false;
-  getQuizUnlockStatus() async{
+  getQuizUnlockStatus() async {
     await CheckQuizUnlock.QuizUnlockStatus(widget.QuizID).then((value) => {
-      setState(() {
-        quizUnlock = value;
-      })
-    });
+          setState(() {
+            quizUnlock = value;
+          })
+        });
   }
 
   @override
@@ -49,7 +48,33 @@ class _QuizIntroState extends State<QuizIntro> {
       floatingActionButton: ElevatedButton(
         child: Text(quizUnlock ? "START" : "UNLOCK QUIZ"),
         onPressed: () {
-          quizUnlock ? print("QUIZ IS ALREADY UNLOCKED") : quizBusiness.buyQuiz(quizPrice: int.parse(widget.QuizPrice), quizId: widget.QuizID);
+          quizUnlock
+              ? print("QUIZ IS ALREADY UNLOCKED")
+              : quizBusiness
+                  .buyQuiz(
+                      quizPrice: int.parse(widget.QuizPrice),
+                      quizId: widget.QuizID)
+                  .then((quizIsUnlocked) {
+                  if (quizIsUnlocked) {
+                    setState(() {
+                      quizUnlock = true;
+                    });
+                  } else {
+                    return showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                              title:
+                                  const Text("Not enough money to buy this quiz!!"),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text("Done"))
+                              ],
+                            ));
+                  }
+                });
         },
       ),
       body: SingleChildScrollView(
