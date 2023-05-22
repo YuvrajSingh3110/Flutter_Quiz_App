@@ -13,24 +13,27 @@ class QuizQues extends StatefulWidget {
 }
 
 class _QuizQuesState extends State<QuizQues> {
-
   QuestionModel questionModel = new QuestionModel();
 
-  genQuestion() async{
-    await QuizQuesCreator.generateQuizQues(quizID: widget.quizID, quesMoney: widget.quizMoney).then((quesData) {
-      questionModel.question = quesData["question"];
-      questionModel.correctAnswer = quesData["correct_ans"];
-      List options = [
-        quesData["opt1"],
-        quesData["opt2"],
-        quesData["opt3"],
-        quesData["opt4"],
-      ];
-      options.shuffle(); //to shuffle the options
-      questionModel.opt1 = options[0];
-      questionModel.opt2 = options[1];
-      questionModel.opt3 = options[2];
-      questionModel.opt4 = options[3];
+  genQuestion() async {
+    await QuizQuesCreator.generateQuizQues(
+            quizID: widget.quizID, quesMoney: widget.quizMoney)
+        .then((quesData) {
+      setState(() {
+        questionModel.question = quesData["question"];
+        questionModel.correctAnswer = quesData["correct_ans"];
+        List options = [
+          quesData["opt1"],
+          quesData["opt2"],
+          quesData["opt3"],
+          quesData["opt4"],
+        ];
+        options.shuffle(); //to shuffle the options
+        questionModel.opt1 = options[0];
+        questionModel.opt2 = options[1];
+        questionModel.opt3 = options[2];
+        questionModel.opt4 = options[3];
+      });
     });
   }
 
@@ -50,13 +53,12 @@ class _QuizQuesState extends State<QuizQues> {
         backgroundColor: Colors.orangeAccent,
       ),
       floatingActionButton: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(backgroundColor: Colors.deepOrange),
-        child: const Text(
-          "Quit Game",
-          style: TextStyle(fontSize: 20),
-        )
-      ),
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(backgroundColor: Colors.deepOrange),
+          child: const Text(
+            "Quit Game",
+            style: TextStyle(fontSize: 20),
+          )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       drawer: const LifelineDrawer(),
       body: Container(
