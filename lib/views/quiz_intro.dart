@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/services/checkQuizUnlock.dart';
 import 'package:quiz_app/services/quizBusiness.dart';
+import 'package:quiz_app/views/quiz_ques.dart';
 
 import '../services/quizQuesCreator.dart';
 
@@ -49,10 +50,9 @@ class _QuizIntroState extends State<QuizIntro> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: ElevatedButton(
         child: Text(quizUnlock ? "START" : "UNLOCK QUIZ"),
-        onPressed: () async {
+        onPressed: () {
           quizUnlock
-              ? await QuizQuesCreator.generateQuizQues(
-                  quizID: widget.QuizID, quesMoney: widget.QuizPrice)
+              ? Navigator.push(context, MaterialPageRoute(builder: (context) => QuizQues(quizID: widget.QuizID, quizMoney: widget.QuizPrice)))
               : quizBusiness
                   .buyQuiz(
                       quizPrice: int.parse(widget.QuizPrice),

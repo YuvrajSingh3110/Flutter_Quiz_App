@@ -1,19 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/services/questionModel.dart';
+import 'package:quiz_app/services/quizQuesCreator.dart';
 import 'package:quiz_app/widgets/lifelineSideBar.dart';
 
 class QuizQues extends StatefulWidget {
-  const QuizQues({Key? key}) : super(key: key);
+  String quizID;
+  String quizMoney;
+  QuizQues({required this.quizID, required this.quizMoney});
 
   @override
   State<QuizQues> createState() => _QuizQuesState();
 }
 
 class _QuizQuesState extends State<QuizQues> {
+
+  QuestionModel questionModel = new QuestionModel();
+
+  genQuestion() async{
+    await QuizQuesCreator.generateQuizQues(quizID: widget.quizID, quesMoney: widget.quizMoney).then((quesData) {
+      questionModel.question = quesData["question"];
+      questionModel.correctAnswer = quesData["correct_ans"];
+      List options = [
+        quesData["opt1"],
+        quesData["opt2"],
+        quesData["opt3"],
+        quesData["opt4"],
+      ];
+      options.shuffle(); //to shuffle the options
+      questionModel.opt1 = options[0];
+      questionModel.opt2 = options[1];
+      questionModel.opt3 = options[2];
+      questionModel.opt4 = options[3];
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    genQuestion();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Rs. 20,000"),
+        title: Text("Rs. ${widget.quizMoney}"),
         centerTitle: true,
         backgroundColor: Colors.orangeAccent,
       ),
@@ -26,7 +58,7 @@ class _QuizQuesState extends State<QuizQues> {
         )
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      drawer: LifelineDrawer(),
+      drawer: const LifelineDrawer(),
       body: Container(
         color: Colors.orangeAccent,
         width: MediaQuery.of(context).size.width,
@@ -65,9 +97,9 @@ class _QuizQuesState extends State<QuizQues> {
               margin: const EdgeInsets.all(15),
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(20)),
-              child: const Text(
-                "Question",
-                style: TextStyle(fontSize: 30),
+              child: Text(
+                questionModel.question,
+                style: const TextStyle(fontSize: 30),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -81,9 +113,9 @@ class _QuizQuesState extends State<QuizQues> {
               decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.4),
                   borderRadius: BorderRadius.circular(20)),
-              child: const Text(
-                "A",
-                style: TextStyle(fontSize: 20, color: Colors.white),
+              child: Text(
+                "A. ${questionModel.opt1}",
+                style: const TextStyle(fontSize: 20, color: Colors.white),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -94,9 +126,9 @@ class _QuizQuesState extends State<QuizQues> {
               decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.4),
                   borderRadius: BorderRadius.circular(20)),
-              child: const Text(
-                "B",
-                style: TextStyle(fontSize: 20, color: Colors.white),
+              child: Text(
+                "B. ${questionModel.opt2}",
+                style: const TextStyle(fontSize: 20, color: Colors.white),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -107,9 +139,9 @@ class _QuizQuesState extends State<QuizQues> {
               decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.4),
                   borderRadius: BorderRadius.circular(20)),
-              child: const Text(
-                "C",
-                style: TextStyle(fontSize: 20, color: Colors.white),
+              child: Text(
+                "C. ${questionModel.opt3}",
+                style: const TextStyle(fontSize: 20, color: Colors.white),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -120,9 +152,9 @@ class _QuizQuesState extends State<QuizQues> {
               decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.4),
                   borderRadius: BorderRadius.circular(20)),
-              child: const Text(
-                "D",
-                style: TextStyle(fontSize: 20, color: Colors.white),
+              child: Text(
+                "D. ${questionModel.opt4}",
+                style: const TextStyle(fontSize: 20, color: Colors.white),
                 textAlign: TextAlign.center,
               ),
             ),
