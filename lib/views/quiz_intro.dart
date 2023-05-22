@@ -156,6 +156,28 @@ class _QuizIntroState extends State<QuizIntro> {
                   ],
                 ),
               ),
+              quizUnlock ? Container() : Container(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: const [
+                        Icon(Icons.money),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Money",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 20),
+                        )
+                      ],
+                    ),
+                    Text("Rs. ${widget.QuizPrice}")
+                  ],
+                ),
+              ),
               Container(
                 padding: const EdgeInsets.all(20),
                 child: Column(

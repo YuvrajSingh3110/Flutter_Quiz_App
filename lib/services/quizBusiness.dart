@@ -5,11 +5,11 @@ class quizBusiness{
   static Future<bool> buyQuiz({required int quizPrice, required String quizId}) async{
     String userId = "";
     bool enoughMoney = false;
-    await LocalDB.getUserId().then((uID) => {
-      userId = uID!
+    await LocalDB.getUserId().then((uID) {
+      userId = uID!;
     });
-    await FirebaseFirestore.instance.collection("User").doc(userId).get().then((user) => {
-      enoughMoney = quizPrice <= int.parse(user.data()!["money"])
+    await FirebaseFirestore.instance.collection("User").doc(userId).get().then((user) {
+      enoughMoney = quizPrice <= user.data()!["money"];
     });
 
     if(enoughMoney){
