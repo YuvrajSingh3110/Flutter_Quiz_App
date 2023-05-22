@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/services/checkQuizUnlock.dart';
 import 'package:quiz_app/services/quizBusiness.dart';
 
+import '../services/quizQuesCreator.dart';
+
 class QuizIntro extends StatefulWidget {
   String QuizName;
   String QuizImgUrl;
@@ -47,9 +49,10 @@ class _QuizIntroState extends State<QuizIntro> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: ElevatedButton(
         child: Text(quizUnlock ? "START" : "UNLOCK QUIZ"),
-        onPressed: () {
+        onPressed: () async {
           quizUnlock
-              ? print("QUIZ IS ALREADY UNLOCKED")
+              ? await QuizQuesCreator.generateQuizQues(
+                  quizID: widget.QuizID, quesMoney: widget.QuizPrice)
               : quizBusiness
                   .buyQuiz(
                       quizPrice: int.parse(widget.QuizPrice),
@@ -63,8 +66,8 @@ class _QuizIntroState extends State<QuizIntro> {
                     return showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                              title:
-                                  const Text("Not enough money to buy this quiz!!"),
+                              title: const Text(
+                                  "Not enough money to buy this quiz!!"),
                               actions: [
                                 TextButton(
                                     onPressed: () {
@@ -156,28 +159,30 @@ class _QuizIntroState extends State<QuizIntro> {
                   ],
                 ),
               ),
-              quizUnlock ? Container() : Container(
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: const [
-                        Icon(Icons.money),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "Money",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400, fontSize: 20),
-                        )
-                      ],
+              quizUnlock
+                  ? Container()
+                  : Container(
+                      padding: EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: const [
+                              Icon(Icons.money),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "Money",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400, fontSize: 20),
+                              )
+                            ],
+                          ),
+                          Text("Rs. ${widget.QuizPrice}")
+                        ],
+                      ),
                     ),
-                    Text("Rs. ${widget.QuizPrice}")
-                  ],
-                ),
-              ),
               Container(
                 padding: const EdgeInsets.all(20),
                 child: Column(
