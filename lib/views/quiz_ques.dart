@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/services/questionModel.dart';
 import 'package:quiz_app/services/quizQuesCreator.dart';
+import 'package:quiz_app/views/winner.dart';
 import 'package:quiz_app/widgets/lifelineSideBar.dart';
+
+import 'looser.dart';
 
 class QuizQues extends StatefulWidget {
   String quizID;
@@ -46,6 +49,12 @@ class _QuizQuesState extends State<QuizQues> {
 
   @override
   Widget build(BuildContext context) {
+
+    bool optAlocked = false;
+    bool optBlocked = false;
+    bool optClocked = false;
+    bool optDlocked = false;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Rs. ${widget.quizMoney}"),
@@ -108,17 +117,34 @@ class _QuizQuesState extends State<QuizQues> {
             const SizedBox(
               height: 10,
             ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(20)),
-              child: Text(
-                "A. ${questionModel.opt1}",
-                style: const TextStyle(fontSize: 20, color: Colors.white),
-                textAlign: TextAlign.center,
+            InkWell(
+              onTap: () {
+                print("DOUBLE PRESS TO LOCK THE ANSWER");
+              },
+              onDoubleTap: (){
+                setState(() {
+                  optAlocked = true;
+                });
+                Future.delayed(const Duration(seconds: 1), () {
+                  if(questionModel.opt1 == questionModel.correctAnswer){
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Winner()));
+                  }else{
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Looser()));
+                  }
+                });
+              },
+              child: Container(
+                padding: const EdgeInsets.all(15),
+                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    color: optAlocked ? Colors.yellowAccent.withOpacity(0.4) : Colors.white.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(20)),
+                child: Text(
+                  "A. ${questionModel.opt1}",
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
             Container(
