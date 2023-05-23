@@ -74,7 +74,7 @@ class _WinnerState extends State<Winner> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => QuizQues(quizID: widget.quizID, quizMoney: widget.quesMoney)));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => QuizQues(quizID: widget.quizID, quizMoney: (widget.quesMoney)*2)));
                   },
                 ),
               ],
