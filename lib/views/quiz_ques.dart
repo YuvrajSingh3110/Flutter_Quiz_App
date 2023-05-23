@@ -127,7 +127,7 @@ class _QuizQuesState extends State<QuizQues> {
                 });
                 Future.delayed(const Duration(seconds: 1), () {
                   if(questionModel.opt1 == questionModel.correctAnswer){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Winner()));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Winner(widget.quizMoney, widget.quizID)));
                   }else{
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Looser()));
                   }

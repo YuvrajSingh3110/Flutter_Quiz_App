@@ -2,9 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:confetti/confetti.dart';
+import 'package:quiz_app/views/quiz_ques.dart';
 
 class Winner extends StatefulWidget {
-  const Winner({Key? key}) : super(key: key);
+  String quesMoney;
+  String quizID;
+  Winner(this.quesMoney, this.quizID);
 
   @override
   State<Winner> createState() => _WinnerState();
@@ -51,6 +54,11 @@ class _WinnerState extends State<Winner> {
                   "Sahi jawab",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
                 ),
+                Text(
+                  "You Won rs. ${widget.quesMoney}",
+                  style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w300),
+                  textAlign: TextAlign.center,
+                ),
                 const Text(
                   "Kya kijiega itni dhanrashi ka?",
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.w300),
@@ -62,10 +70,12 @@ class _WinnerState extends State<Winner> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
                   child: const Text(
-                    "Next",
+                    "Next Question",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => QuizQues(quizID: widget.quizID, quizMoney: widget.quesMoney)));
+                  },
                 ),
               ],
             ),
