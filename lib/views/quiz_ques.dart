@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/services/firedb.dart';
 import 'package:quiz_app/services/questionModel.dart';
 import 'package:quiz_app/services/quizQuesCreator.dart';
 import 'package:quiz_app/views/winner.dart';
@@ -49,7 +50,6 @@ class _QuizQuesState extends State<QuizQues> {
 
   @override
   Widget build(BuildContext context) {
-
     bool optAlocked = false;
     bool optBlocked = false;
     bool optClocked = false;
@@ -121,24 +121,39 @@ class _QuizQuesState extends State<QuizQues> {
               onTap: () {
                 print("DOUBLE PRESS TO LOCK THE ANSWER");
               },
-              onDoubleTap: (){
+              onDoubleTap: () {
                 setState(() {
                   optAlocked = true;
                 });
-                Future.delayed(const Duration(seconds: 1), () {
-                  if(questionModel.opt1 == questionModel.correctAnswer){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Winner(widget.quizMoney, widget.quizID)));
-                  }else{
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Looser()));
+                Future.delayed(const Duration(seconds: 1), () async {
+                  if (questionModel.opt1 == questionModel.correctAnswer) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                Winner(widget.quizMoney, widget.quizID)));
+                  } else {
+                    await FireDB.getMoney(widget.quizMoney);
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Looser(
+                                  moneyWon: (int.parse(widget.quizMoney) / 2)
+                                      .toString(),
+                                  correctAns: questionModel.correctAnswer,
+                                )));
                   }
                 });
               },
               child: Container(
                 padding: const EdgeInsets.all(15),
-                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                    color: optAlocked ? Colors.yellowAccent.withOpacity(0.4) : Colors.white.withOpacity(0.4),
+                    color: optAlocked
+                        ? Colors.yellowAccent.withOpacity(0.4)
+                        : Colors.white.withOpacity(0.4),
                     borderRadius: BorderRadius.circular(20)),
                 child: Text(
                   "A. ${questionModel.opt1}",
@@ -147,43 +162,139 @@ class _QuizQuesState extends State<QuizQues> {
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(20)),
-              child: Text(
-                "B. ${questionModel.opt2}",
-                style: const TextStyle(fontSize: 20, color: Colors.white),
-                textAlign: TextAlign.center,
+            InkWell(
+              onTap: () {
+                print("DOUBLE PRESS TO LOCK THE ANSWER");
+              },
+              onDoubleTap: () {
+                setState(() {
+                  optBlocked = true;
+                });
+                Future.delayed(const Duration(seconds: 1), () async {
+                  if (questionModel.opt2 == questionModel.correctAnswer) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                Winner(widget.quizMoney, widget.quizID)));
+                  } else {
+                    await FireDB.getMoney(widget.quizMoney);
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Looser(
+                                  moneyWon: (int.parse(widget.quizMoney) / 2)
+                                      .toString(),
+                                  correctAns: questionModel.correctAnswer,
+                                )));
+                  }
+                });
+              },
+              child: Container(
+                padding: const EdgeInsets.all(15),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    color: optBlocked
+                        ? Colors.yellowAccent.withOpacity(0.4)
+                        : Colors.white.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(20)),
+                child: Text(
+                  "B. ${questionModel.opt2}",
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(20)),
-              child: Text(
-                "C. ${questionModel.opt3}",
-                style: const TextStyle(fontSize: 20, color: Colors.white),
-                textAlign: TextAlign.center,
+            InkWell(
+              onTap: () {
+                print("DOUBLE PRESS TO LOCK THE ANSWER");
+              },
+              onDoubleTap: () {
+                setState(() {
+                  optClocked = true;
+                });
+                Future.delayed(const Duration(seconds: 1), () async {
+                  if (questionModel.opt3 == questionModel.correctAnswer) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                Winner(widget.quizMoney, widget.quizID)));
+                  } else {
+                    await FireDB.getMoney(widget.quizMoney);
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Looser(
+                                  moneyWon: (int.parse(widget.quizMoney) / 2)
+                                      .toString(),
+                                  correctAns: questionModel.correctAnswer,
+                                )));
+                  }
+                });
+              },
+              child: Container(
+                padding: const EdgeInsets.all(15),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    color: optClocked
+                        ? Colors.yellowAccent.withOpacity(0.4)
+                        : Colors.white.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(20)),
+                child: Text(
+                  "C. ${questionModel.opt3}",
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(20)),
-              child: Text(
-                "D. ${questionModel.opt4}",
-                style: const TextStyle(fontSize: 20, color: Colors.white),
-                textAlign: TextAlign.center,
+            InkWell(
+              onTap: () {
+                print("DOUBLE PRESS TO LOCK THE ANSWER");
+              },
+              onDoubleTap: () {
+                setState(() {
+                  optDlocked = true;
+                });
+                Future.delayed(const Duration(seconds: 1), () async {
+                  if (questionModel.opt4 == questionModel.correctAnswer) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                Winner(widget.quizMoney, widget.quizID)));
+                  } else {
+                    await FireDB.getMoney(widget.quizMoney);
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Looser(
+                                  moneyWon: (int.parse(widget.quizMoney) / 2)
+                                      .toString(),
+                                  correctAns: questionModel.correctAnswer,
+                                )));
+                  }
+                });
+              },
+              child: Container(
+                padding: const EdgeInsets.all(15),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    color: optDlocked
+                        ? Colors.yellowAccent.withOpacity(0.4)
+                        : Colors.white.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(20)),
+                child: Text(
+                  "D. ${questionModel.opt4}",
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
           ],

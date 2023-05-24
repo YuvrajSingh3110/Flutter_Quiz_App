@@ -60,4 +60,25 @@ class FireDB {
       return true;
     }
   }
+
+  static getMoney(String amount) async {
+    if (amount != "2500") {
+      final FirebaseAuth _myauth = FirebaseAuth.instance;
+      await FirebaseFirestore.instance
+          .collection("User")
+          .doc(_myauth.currentUser?.uid)
+          .get()
+          .then((value) async {
+        await LocalDB.saveMoney(
+            (int.parse(value.data()!["money"]) + int.parse(amount)).toString());
+        await FirebaseFirestore.instance
+            .collection("User")
+            .doc(_myauth.currentUser?.uid)
+            .update({
+          "money":
+              (int.parse(value.data()!["money"]) + int.parse(amount)).toString()
+        });
+      });
+    }
+  }
 }

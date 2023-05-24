@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class Looser extends StatelessWidget {
-  const Looser({Key? key}) : super(key: key);
+  String moneyWon;
+  String correctAns;
+  Looser({required this.moneyWon, required this.correctAns});
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +23,20 @@ class Looser extends StatelessWidget {
               children: [
                 const Icon(Icons.error_outline_sharp, size: 100, ),
                 const Text(
-                  "Abey yrr",
+                  "Abey Yrr...Galat Jawab",
                   style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                 ),
+                Text(
+                  "Sahi jawab is- $correctAns",
+                  style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                ),
                 const Text(
-                  "Galat jawab",
+                  "You Won",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  "Rs. ${moneyWon == 2500 ? 0 : moneyWon}",
+                  style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                 ),
                 const Text(
                   "Firse try karega?",
