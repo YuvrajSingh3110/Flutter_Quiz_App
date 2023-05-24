@@ -69,7 +69,14 @@ class _QuizQuesState extends State<QuizQues> {
             style: TextStyle(fontSize: 20),
           )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      drawer: const LifelineDrawer(),
+      drawer: LifelineDrawer(
+        question: questionModel.question,
+        opt1: questionModel.opt1,
+        opt2: questionModel.opt2,
+        opt3: questionModel.opt3,
+        opt4: questionModel.opt4,
+        correctAns: questionModel.correctAnswer,
+      ),
       body: Container(
         color: Colors.orangeAccent,
         width: MediaQuery.of(context).size.width,

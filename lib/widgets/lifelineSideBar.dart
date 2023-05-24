@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/views/audience_poll.dart';
 
 class LifelineDrawer extends StatefulWidget {
-  const LifelineDrawer({Key? key}) : super(key: key);
+  String question;
+  String opt1;
+  String opt2;
+  String opt3;
+  String opt4;
+  String correctAns;
+  LifelineDrawer({
+    required this.question,
+    required this.opt1,
+    required this.opt2,
+    required this.opt3,
+    required this.opt4,
+    required this.correctAns,
+  });
 
   @override
   State<LifelineDrawer> createState() => _LifelineDrawerState();
@@ -28,15 +42,29 @@ class _LifelineDrawerState extends State<LifelineDrawer> {
             children: [
               Column(
                 children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.orange),
-                    padding: const EdgeInsets.all(15),
-                    margin: const EdgeInsets.only(left: 10),
-                    child: const Icon(
-                      Icons.people,
-                      size: 30,
-                      color: Colors.white,
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AudiencePoll(
+                                  ques: widget.question,
+                                  opt1: widget.opt1,
+                                  opt2: widget.opt2,
+                                  opt3: widget.opt3,
+                                  opt4: widget.opt4,
+                                  correctAns: widget.correctAns)));
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle, color: Colors.orange),
+                      padding: const EdgeInsets.all(15),
+                      margin: const EdgeInsets.only(left: 10),
+                      child: const Icon(
+                        Icons.people,
+                        size: 30,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   const SizedBox(
