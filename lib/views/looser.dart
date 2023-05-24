@@ -53,7 +53,9 @@ class Looser extends StatelessWidget {
                     "Retry",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 ),
               ],
             ),
