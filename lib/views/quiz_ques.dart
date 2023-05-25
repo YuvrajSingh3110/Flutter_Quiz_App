@@ -140,7 +140,7 @@ class _QuizQuesState extends State<QuizQues> {
                             builder: (context) =>
                                 Winner(widget.quizMoney, widget.quizID)));
                   } else {
-                    await FireDB.getMoney(widget.quizMoney);
+                    await FireDB.updateMoney(widget.quizMoney);
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
@@ -185,7 +185,7 @@ class _QuizQuesState extends State<QuizQues> {
                             builder: (context) =>
                                 Winner(widget.quizMoney, widget.quizID)));
                   } else {
-                    await FireDB.getMoney(widget.quizMoney);
+                    await FireDB.updateMoney(widget.quizMoney);
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
@@ -230,7 +230,7 @@ class _QuizQuesState extends State<QuizQues> {
                             builder: (context) =>
                                 Winner(widget.quizMoney, widget.quizID)));
                   } else {
-                    await FireDB.getMoney(widget.quizMoney);
+                    await FireDB.updateMoney(widget.quizMoney);
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
@@ -275,7 +275,7 @@ class _QuizQuesState extends State<QuizQues> {
                             builder: (context) =>
                                 Winner(widget.quizMoney, widget.quizID)));
                   } else {
-                    await FireDB.getMoney(widget.quizMoney);
+                    await FireDB.updateMoney(widget.quizMoney);
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(

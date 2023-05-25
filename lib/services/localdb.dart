@@ -25,7 +25,7 @@ class LocalDB{
     return await preferences.setString(mKey, money);
   }
 
-  //gets uid of user
+  //gets money of user
   static Future<String?> getMoney() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getString(mKey);
@@ -36,7 +36,7 @@ class LocalDB{
     return await preferences.setString(nKey, name);
   }
 
-  //gets uid of user
+  //gets name of user
   static Future<String?> getName() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getString(nKey);
@@ -44,10 +44,10 @@ class LocalDB{
 
   static Future<bool> saveUrl(String profileUrl) async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return await preferences.setString(uidkey, profileUrl);
+    return await preferences.setString(pKey, profileUrl);
   }
 
-  //gets uid of user
+  //gets URL of user
   static Future<String?> getUrl() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getString(pKey);
@@ -55,10 +55,10 @@ class LocalDB{
 
   static Future<bool> saveLevel(String level) async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return await preferences.setString(uidkey, level);
+    return await preferences.setString(lKey, level);
   }
 
-  //gets uid of user
+  //gets level of user
   static Future<String?> getLevel() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getString(lKey);
@@ -66,10 +66,10 @@ class LocalDB{
 
   static Future<bool> saveRank(String rank) async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    return await preferences.setString(uidkey, rank);
+    return await preferences.setString(rKey, rank);
   }
 
-  //gets uid of user
+  //gets rank of user
   static Future<String?> getRank() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getString(rKey);

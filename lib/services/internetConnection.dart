@@ -7,9 +7,8 @@ class Internet{
 
   checkInternetConnection() async{
     connected = await InternetConnectionChecker().hasConnection;
-    if(connected == true){
-      const msg = "Connected To Internet";
-      showSimpleNotification(const Text(msg));
-    }
+    final msg = connected ? "CONNECTED TO INTERNET" : "NOT CONNECTED TO INTERNET";
+    print(msg);
+    showSimpleNotification(Text(msg));
   }
 }

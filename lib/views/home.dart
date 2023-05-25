@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:quiz_app/views/quiz_intro.dart';
 import 'package:quiz_app/widgets/sideNavBar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
 import '../services/home_fire.dart';
 import '../services/localdb.dart';
 
@@ -18,10 +16,11 @@ class _HomeState extends State<Home> {
   String name = "User Name";
   String money = "---";
   String rank = "---";
-  String profileUrl = "";
-  String level = "---";
+  String profileUrl = "---";
+  String level = "0";
 
   late List quizzes;
+  bool isLoading = true;
 
   getUserDetails() async {
     await LocalDB.getName().then((value) {
@@ -52,10 +51,11 @@ class _HomeState extends State<Home> {
   }
 
   getQuiz() async {
-    await HomeFire.getQuizzes().then((returned_quizzes) => {
+    await HomeFire.getQuizzes().then((returned_quizzes)  {
           setState(() {
             quizzes = returned_quizzes;
-          })
+            isLoading = false;
+          });
         });
   }
 
@@ -113,10 +113,10 @@ class _HomeState extends State<Home> {
                 height: 15,
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 10),
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
+                  children: const [
                     CircleAvatar(
                       backgroundColor: Colors.purpleAccent,
                       radius: 35,
@@ -137,7 +137,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: Row(
                   children: [
                     Flexible(
@@ -274,7 +274,7 @@ class _HomeState extends State<Home> {
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: const [
                             Text(
                               "Yuvraj Singh",
                               style: TextStyle(
@@ -327,11 +327,11 @@ class _HomeState extends State<Home> {
                                     MaterialPageRoute(
                                         builder: (context) => QuizIntro(
                                               QuizName: quizzes[0]["quiz_name"],
-                                              QuizImgUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c2NpZW5jZSUyMHF1aXp8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+                                              QuizImgUrl: quizzes[0]["quiz_thumbnail"],
                                               QuizAbout: quizzes[0]["topics"],
                                               QuizDuration: quizzes[0]["duration"],
                                               QuizTopics: quizzes[0]["about_quiz"],
-                                              QuizID: quizzes[0]["QuizID"],
+                                              QuizID: quizzes[0]["quiz_id"],
                                               QuizPrice: quizzes[0]["quiz_price"],
                                             )));
                               },
@@ -662,7 +662,7 @@ class _HomeState extends State<Home> {
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
+                  children: const [
                     CircleAvatar(
                       backgroundColor: Colors.purpleAccent,
                       radius: 35,
@@ -682,7 +682,7 @@ class _HomeState extends State<Home> {
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
+                  children: const [
                     CircleAvatar(
                       backgroundColor: Colors.purpleAccent,
                       radius: 35,
@@ -702,7 +702,7 @@ class _HomeState extends State<Home> {
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
+                  children: const [
                     CircleAvatar(
                       backgroundColor: Colors.purpleAccent,
                       radius: 35,
@@ -722,7 +722,7 @@ class _HomeState extends State<Home> {
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
+                  children: const [
                     CircleAvatar(
                       backgroundColor: Colors.purpleAccent,
                       radius: 35,

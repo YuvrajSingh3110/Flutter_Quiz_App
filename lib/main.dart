@@ -4,11 +4,6 @@ import 'package:overlay_support/overlay_support.dart';
 import 'package:quiz_app/Views/login.dart';
 import 'package:quiz_app/services/localdb.dart';
 import 'package:quiz_app/views/home.dart';
-import 'package:quiz_app/views/looser.dart';
-import 'package:quiz_app/views/profile.dart';
-import 'package:quiz_app/views/quiz_intro.dart';
-import 'package:quiz_app/views/quiz_ques.dart';
-import 'package:quiz_app/views/winner.dart';
 
 Future <void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,9 +25,16 @@ class _MyAppState extends State<MyApp> {
   getLoggedinState() async{
     await LocalDB.getUserId().then((value) {
       setState(() {
-        isLogin = true;
+        isLogin = value.toString() != "null";
       });
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getLoggedinState();
   }
 
   // This widget is the root of your application.

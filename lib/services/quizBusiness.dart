@@ -9,7 +9,9 @@ class quizBusiness{
       userId = uID!;
     });
     await FirebaseFirestore.instance.collection("User").doc(userId).get().then((user) {
-      enoughMoney = quizPrice <= user.data()!["money"];
+      if(quizPrice <= user.data()!["money"]){
+        enoughMoney = true;
+      }
     });
 
     if(enoughMoney){

@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'localdb.dart';
+import 'package:quiz_app/services/localdb.dart';
 
 class FireDB {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   createNewUser(String name, String email, String photoUrl, String uid) async {
     final User? currentUser = _auth.currentUser;
     if (await getUser()) {
-      print("User Already Exists");
+      print("USER ALREADY EXISTS");
     } else {
       await FirebaseFirestore.instance
           .collection("User")
@@ -39,7 +39,7 @@ class FireDB {
         .then((value) async {
       user = value.data().toString();
       print(user);
-      await LocalDB.saveMoney("999989");
+      await LocalDB.saveMoney("1000");
       await LocalDB.saveRank("444");
       await LocalDB.saveLevel("45");
     });
@@ -48,12 +48,12 @@ class FireDB {
     } else {
       await FirebaseFirestore.instance
           .collection("User")
-          .doc(current_user!.uid)
+          .doc(current_user.uid)
           .get()
           .then((value) async {
         user = value.data().toString();
         print(user);
-        await LocalDB.saveMoney(value["money"]);
+        await LocalDB.saveMoney(value["money"].toString());
         await LocalDB.saveRank(value["rank"]);
         await LocalDB.saveLevel(value["level"]);
       });
@@ -61,7 +61,7 @@ class FireDB {
     }
   }
 
-  static getMoney(String amount) async {
+  static updateMoney(String amount) async {
     if (amount != "2500") {
       final FirebaseAuth _myauth = FirebaseAuth.instance;
       await FirebaseFirestore.instance

@@ -3,8 +3,6 @@ import 'package:quiz_app/services/checkQuizUnlock.dart';
 import 'package:quiz_app/services/quizBusiness.dart';
 import 'package:quiz_app/views/quiz_ques.dart';
 
-import '../services/quizQuesCreator.dart';
-
 class QuizIntro extends StatefulWidget {
   String QuizName;
   String QuizImgUrl;
@@ -30,11 +28,11 @@ class QuizIntro extends StatefulWidget {
 class _QuizIntroState extends State<QuizIntro> {
   bool quizUnlock = false;
   getQuizUnlockStatus() async {
-    await CheckQuizUnlock.QuizUnlockStatus(widget.QuizID).then((value) => {
-          setState(() {
-            quizUnlock = value;
-          })
-        });
+    await CheckQuizUnlock.QuizUnlockStatus(widget.QuizID).then((value) {
+      setState(() {
+        quizUnlock = value;
+      });
+    });
   }
 
   @override
@@ -52,7 +50,11 @@ class _QuizIntroState extends State<QuizIntro> {
         child: Text(quizUnlock ? "START" : "UNLOCK QUIZ"),
         onPressed: () {
           quizUnlock
-              ? Navigator.push(context, MaterialPageRoute(builder: (context) => QuizQues(quizID: widget.QuizID, quizMoney: widget.QuizPrice)))
+              ? Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => QuizQues(
+                          quizID: widget.QuizID, quizMoney: widget.QuizPrice)))
               : quizBusiness
                   .buyQuiz(
                       quizPrice: int.parse(widget.QuizPrice),
@@ -73,7 +75,7 @@ class _QuizIntroState extends State<QuizIntro> {
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: const Text("Done"))
+                                    child: const Text("OK"))
                               ],
                             ));
                   }
@@ -162,7 +164,7 @@ class _QuizIntroState extends State<QuizIntro> {
               quizUnlock
                   ? Container()
                   : Container(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
