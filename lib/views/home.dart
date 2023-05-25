@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   String profileUrl = "---";
   String level = "0";
 
-  late List quizzes;
+  late List quizzes = [];
   bool isLoading = true;
 
   getUserDetails() async {
@@ -326,13 +326,13 @@ class _HomeState extends State<Home> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => QuizIntro(
-                                              QuizName: quizzes[0]["quiz_name"],
-                                              QuizImgUrl: quizzes[0]["quiz_thumbnail"],
-                                              QuizAbout: quizzes[0]["topics"],
-                                              QuizDuration: quizzes[0]["duration"],
-                                              QuizTopics: quizzes[0]["about_quiz"],
-                                              QuizID: quizzes[0]["quiz_id"],
-                                              QuizPrice: quizzes[0]["quiz_price"],
+                                              QuizName: (quizzes[0])["quiz_name"],
+                                              QuizImgUrl: (quizzes[0])["quiz_thumbnail"],
+                                              QuizAbout: (quizzes[0])["topics"],
+                                              QuizDuration: (quizzes[0])["duration"],
+                                              QuizTopics: (quizzes[0])["about_quiz"],
+                                              QuizID: (quizzes[0])["quiz_id"],
+                                              QuizPrice: (quizzes[0])["quiz_price"],
                                             )));
                               },
                               child: Stack(

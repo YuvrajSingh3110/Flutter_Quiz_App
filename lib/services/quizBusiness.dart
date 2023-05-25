@@ -3,7 +3,7 @@ import 'package:quiz_app/services/localdb.dart';
 
 class quizBusiness{
   static Future<bool> buyQuiz({required int quizPrice, required String quizId}) async{
-    String userId = "";
+    late String userId;
     bool enoughMoney = false;
     await LocalDB.getUserId().then((uID) {
       userId = uID!;
