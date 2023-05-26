@@ -25,7 +25,9 @@ class _MyAppState extends State<MyApp> {
   getLoggedinState() async{
     await LocalDB.getUserId().then((value) {
       setState(() {
-        isLogin = value.toString() != "null";
+        if(value.toString() != "null"){
+          isLogin = true;
+        }
       });
     });
   }
@@ -44,7 +46,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        home: isLogin ? Home() : Login(),
+        home: isLogin ? const Home() : const Login(),
       ),
     );
   }

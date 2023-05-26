@@ -3,13 +3,13 @@ import 'package:quiz_app/services/localdb.dart';
 
 class quizBusiness{
   static Future<bool> buyQuiz({required int quizPrice, required String quizId}) async{
-    late String userId;
+    late String? userId;
     bool enoughMoney = false;
     await LocalDB.getUserId().then((uID) {
-      userId = uID!;
+      userId = uID;
     });
     await FirebaseFirestore.instance.collection("User").doc(userId).get().then((user) {
-      if(quizPrice <= user.data()!["money"]){
+      if(quizPrice <= int.parse(user.data()!["money"])){
         enoughMoney = true;
       }
     });

@@ -3,9 +3,7 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:quiz_app/services/auth.dart';
-import 'package:quiz_app/services/internetConnection.dart';
 import 'package:quiz_app/views/home.dart';
-import '../services/localdb.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -21,7 +19,7 @@ class _LoginState extends State<Login> {
     super.initState();
     //if status of internet changes
     InternetConnectionChecker().onStatusChange.listen((status) {
-      final connected = status == InternetConnectionStatus;
+      final connected = status == InternetConnectionStatus.connected;
       showSimpleNotification(
           Text(connected
               ? "Connected To Internet"
@@ -56,8 +54,10 @@ class _LoginState extends State<Login> {
               ),
               SignInButton(Buttons.GoogleDark, onPressed: () async {
                 await signInWithGoogle();
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Home()));
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => const Home()));
               }),
+              const SizedBox(height: 10,),
+              const Text("By Continuing, You Are Agree With Our TnC" , style: TextStyle(color: Colors.white),)
             ],
           ),
         ),

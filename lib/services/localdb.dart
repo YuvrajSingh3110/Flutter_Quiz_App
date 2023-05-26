@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalDB{
-  static const uidkey = "nigeagfogwwab";
+  static const uidkey = "";
   static const lKey = "iiawbbuevbndmvbds";
   static const mKey = "huiuigpauwe";
   static const rKey = "bhuavbkhvbhdsv";

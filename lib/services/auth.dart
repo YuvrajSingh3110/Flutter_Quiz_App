@@ -27,7 +27,7 @@ Future<User?> signInWithGoogle() async {
     final User? currentUser = await _auth.currentUser;
     assert(currentUser!.uid == user!.uid);
     await FireDB().createNewUser(user!.displayName.toString(),user.email.toString(), user.photoURL.toString(), user.uid.toString());
-    await LocalDB.saveUserId(user.uid);
+    await LocalDB.saveUserId(user.uid.toString());
     await LocalDB.saveName(user.displayName.toString());
     await LocalDB.saveUrl(user.photoURL.toString());
 
