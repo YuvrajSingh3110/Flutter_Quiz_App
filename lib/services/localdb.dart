@@ -7,6 +7,10 @@ class LocalDB{
   static const rKey = "bhuavbkhvbhdsv";
   static const nKey = "huewahjkbvndmbvh";
   static const pKey = "niueiaghjbvnmdb";
+  static const audKey = "baeoabhfeiuubv";
+  static const jKey = "nshjkwmvivn";
+  static const ddKey = "awkehfanekvjsv";
+  static const expKey = "amicohweibsmvdsmv";
 
 
   static Future<bool> saveUserId(String uid) async{
@@ -73,5 +77,45 @@ class LocalDB{
   static Future<String?> getRank() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getString(rKey);
+  }
+
+  static Future<bool> saveAudPoll(bool isAvailable) async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return await preferences.setBool(audKey, isAvailable);
+  }
+
+  static Future<bool?> getAudPoll() async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getBool(audKey);
+  }
+
+  static Future<bool> saveJoker(bool isAvailable) async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return await preferences.setBool(jKey, isAvailable);
+  }
+
+  static Future<bool?> getJoker() async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getBool(jKey);
+  }
+
+  static Future<bool> save50(bool isAvailable) async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return await preferences.setBool(ddKey, isAvailable);
+  }
+
+  static Future<bool?> get50() async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getBool(ddKey);
+  }
+
+  static Future<bool> saveExp(bool isAvailable) async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return await preferences.setBool(expKey, isAvailable);
+  }
+
+  static Future<bool?> getExp() async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getBool(expKey);
   }
 }

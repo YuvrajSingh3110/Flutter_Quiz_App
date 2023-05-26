@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/services/localdb.dart';
+import 'package:quiz_app/services/localdb.dart';
+import 'package:quiz_app/services/localdb.dart';
+import 'package:quiz_app/services/localdb.dart';
 import 'package:quiz_app/views/audience_poll.dart';
 
 class LifelineDrawer extends StatefulWidget {
@@ -22,6 +26,38 @@ class LifelineDrawer extends StatefulWidget {
 }
 
 class _LifelineDrawerState extends State<LifelineDrawer> {
+  Future<bool> checkAudPollAvail() async {
+    late bool audPollAvail;
+    await LocalDB.getAudPoll().then((value) {
+      audPollAvail = value!;
+    });
+    return audPollAvail;
+  }
+
+  Future<bool> checkJokerAvail() async {
+    late bool jokerAvail;
+    await LocalDB.getJoker().then((value) {
+      jokerAvail = value!;
+    });
+    return jokerAvail;
+  }
+
+  Future<bool> checkDDAvail() async {
+    late bool ddAvail;
+    await LocalDB.get50().then((value) {
+      ddAvail = value!;
+    });
+    return ddAvail;
+  }
+
+  Future<bool> checkExpAvail() async {
+    late bool expAvail;
+    await LocalDB.getExp().then((value) {
+      expAvail = value!;
+    });
+    return expAvail;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -43,17 +79,22 @@ class _LifelineDrawerState extends State<LifelineDrawer> {
               Column(
                 children: [
                   InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => AudiencePoll(
-                                  ques: widget.question,
-                                  opt1: widget.opt1,
-                                  opt2: widget.opt2,
-                                  opt3: widget.opt3,
-                                  opt4: widget.opt4,
-                                  correctAns: widget.correctAns)));
+                    onTap: () async {
+                      if (await checkAudPollAvail()) {
+                        await LocalDB.saveAudPoll(false);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AudiencePoll(
+                                    ques: widget.question,
+                                    opt1: widget.opt1,
+                                    opt2: widget.opt2,
+                                    opt3: widget.opt3,
+                                    opt4: widget.opt4,
+                                    correctAns: widget.correctAns)));
+                      } else {
+                        print("AUDIENCE POLL IS ALREADY USED");
+                      }
                     },
                     child: Container(
                       decoration: const BoxDecoration(

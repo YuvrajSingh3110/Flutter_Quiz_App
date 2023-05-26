@@ -4,7 +4,6 @@ import 'package:quiz_app/services/questionModel.dart';
 import 'package:quiz_app/services/quizQuesCreator.dart';
 import 'package:quiz_app/views/winner.dart';
 import 'package:quiz_app/widgets/lifelineSideBar.dart';
-
 import 'looser.dart';
 
 class QuizQues extends StatefulWidget {
@@ -41,6 +40,11 @@ class _QuizQuesState extends State<QuizQues> {
     });
   }
 
+  bool optAlocked = false;
+  bool optBlocked = false;
+  bool optClocked = false;
+  bool optDlocked = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -50,11 +54,6 @@ class _QuizQuesState extends State<QuizQues> {
 
   @override
   Widget build(BuildContext context) {
-    bool optAlocked = false;
-    bool optBlocked = false;
-    bool optClocked = false;
-    bool optDlocked = false;
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Rs. ${widget.quizMoney}"),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/services/checkQuizUnlock.dart';
+import 'package:quiz_app/services/localdb.dart';
 import 'package:quiz_app/services/quizBusiness.dart';
 import 'package:quiz_app/views/quiz_ques.dart';
 
@@ -35,11 +36,20 @@ class _QuizIntroState extends State<QuizIntro> {
     });
   }
 
+  setLifeLineAvailability() async{
+    await LocalDB.saveAudPoll(true);
+    await LocalDB.saveJoker(true);
+    await LocalDB.save50(true);
+    await LocalDB.saveExp(true);
+  }
+
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getQuizUnlockStatus();
+    setLifeLineAvailability();
   }
 
   @override
