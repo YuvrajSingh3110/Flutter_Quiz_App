@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/services/localdb.dart';
+import 'package:quiz_app/views/askTheExpert.dart';
 import 'package:quiz_app/views/audience_poll.dart';
+import 'package:quiz_app/views/fiftyFifty.dart';
+import 'package:quiz_app/views/quiz_ques.dart';
 
 class LifelineDrawer extends StatefulWidget {
   String question;
@@ -9,14 +12,20 @@ class LifelineDrawer extends StatefulWidget {
   String opt3;
   String opt4;
   String correctAns;
-  LifelineDrawer({
-    required this.question,
-    required this.opt1,
-    required this.opt2,
-    required this.opt3,
-    required this.opt4,
-    required this.correctAns,
-  });
+  String quizId;
+  String quizMoney;
+  String ytLink;
+
+  LifelineDrawer(
+      {required this.question,
+      required this.opt1,
+      required this.opt2,
+      required this.opt3,
+      required this.opt4,
+      required this.correctAns,
+      required this.quizId,
+      required this.quizMoney,
+      required this.ytLink});
 
   @override
   State<LifelineDrawer> createState() => _LifelineDrawerState();
@@ -114,71 +123,120 @@ class _LifelineDrawerState extends State<LifelineDrawer> {
                   ),
                 ],
               ),
-              Column(
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.orange),
-                    padding: const EdgeInsets.all(15),
-                    margin: const EdgeInsets.fromLTRB(10, 0, 5, 0),
-                    child: const Icon(
-                      Icons.people,
-                      size: 30,
-                      color: Colors.white,
+              InkWell(
+                onTap: () async {
+                  if (await checkJokerAvail()) {
+                    await LocalDB.saveJoker(false);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => QuizQues(
+                                  quizID: widget.quizId,
+                                  quizMoney: widget.quizMoney,
+                                )));
+                  } else {
+                    print("JOKER QUESTION IS ALREADY USED");
+                  }
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle, color: Colors.orange),
+                      padding: const EdgeInsets.all(15),
+                      margin: const EdgeInsets.fromLTRB(10, 0, 5, 0),
+                      child: const Icon(
+                        Icons.change_circle,
+                        size: 30,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const Text(
-                    "Audience\n Poll",
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Text(
+                      "Joker\n Question",
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
-              Column(
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.orange),
-                    padding: const EdgeInsets.all(15),
-                    margin: const EdgeInsets.fromLTRB(5, 0, 5, 0),
-                    child: const Icon(
-                      Icons.people,
-                      size: 30,
-                      color: Colors.white,
+              InkWell(
+                onTap: () async {
+                  if (await checkDDAvail()) {
+                    await LocalDB.save50(false);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FiftyFifty(
+                                opt1: widget.opt1,
+                                opt2: widget.opt2,
+                                opt3: widget.opt3,
+                                opt4: widget.opt4,
+                                correctAns: widget.correctAns)));
+                  } else {
+                    print("50 50 IS ALREADY USED");
+                  }
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle, color: Colors.orange),
+                      padding: const EdgeInsets.all(15),
+                      margin: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                      child: const Icon(
+                        Icons.star_half,
+                        size: 30,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const Text(
-                    "Audience\n Poll",
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Text(
+                      "Fifty\n Fifty",
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
-              Column(
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.orange),
-                    padding: const EdgeInsets.all(15),
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    child: const Icon(
-                      Icons.people,
-                      size: 30,
-                      color: Colors.white,
+              InkWell(
+                onTap: () async {
+                  if (await checkExpAvail()) {
+                    await LocalDB.saveExp(false);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AskTheExpert(
+                                quizQues: widget.question,
+                                ytURL: widget.ytLink)));
+                  } else {
+                    print("ASK TEH EXPERT IS ALREADY IS ALREADY USED");
+                  }
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle, color: Colors.orange),
+                      padding: const EdgeInsets.all(15),
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      child: const Icon(
+                        Icons.tv,
+                        size: 30,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const Text(
-                    "Audience\n Poll",
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Text(
+                      "Ask The\n Expert",
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

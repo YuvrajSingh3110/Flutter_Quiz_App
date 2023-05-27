@@ -36,20 +36,23 @@ class _QuizIntroState extends State<QuizIntro> {
     });
   }
 
-  setLifeLineAvailability() async{
+  setLifeLineAvailability() async {
     await LocalDB.saveAudPoll(true);
     await LocalDB.saveJoker(true);
     await LocalDB.save50(true);
     await LocalDB.saveExp(true);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                QuizQues(quizID: widget.QuizID, quizMoney: widget.QuizPrice)));
   }
-
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getQuizUnlockStatus();
-    setLifeLineAvailability();
   }
 
   @override
@@ -60,11 +63,7 @@ class _QuizIntroState extends State<QuizIntro> {
         child: Text(quizUnlock ? "START" : "UNLOCK QUIZ"),
         onPressed: () {
           quizUnlock
-              ? Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => QuizQues(
-                          quizID: widget.QuizID, quizMoney: widget.QuizPrice)))
+              ? setLifeLineAvailability()
               : quizBusiness
                   .buyQuiz(
                       quizPrice: int.parse(widget.QuizPrice),

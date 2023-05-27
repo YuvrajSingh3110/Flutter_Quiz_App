@@ -49,6 +49,7 @@ dependencies:
   animated_splash_screen: any
   flutter_native_splash: any
   flutter_launcher_icons: any
+  youtube_player_flutter: any
 
 dev_dependencies:
   flutter_test:
