@@ -24,7 +24,7 @@ class Looser extends StatelessWidget {
                 const Icon(Icons.error_outline_sharp, size: 100, ),
                 const Text(
                   "Abey Yrr...Galat Jawab",
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold), textAlign: TextAlign.center,
                 ),
                 Text(
                   "Sahi jawab is- $correctAns",
@@ -35,7 +35,7 @@ class Looser extends StatelessWidget {
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
                 ),
                 Text(
-                  "Rs. ${moneyWon == 2500 ? 0 : moneyWon}",
+                  "Rs. ${moneyWon == 50 ? 0 : moneyWon}",
                   style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                 ),
                 const Text(

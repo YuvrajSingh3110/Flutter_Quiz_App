@@ -14,10 +14,10 @@ class QuizQuesCreator {
             isEqualTo:
                 quesMoney) //we are using where to get quizzes of only a particular price
         .get()
-        .then((value) => {
+        .then((value) {
               //quesSerialNo = _random.nextInt(50),
               //print(quesSerialNo),
-              quesData = value.docs.elementAt(0).data()
+              quesData = value.docs.elementAt(0).data();
             });
     print(quesData);
     return quesData;

@@ -37,7 +37,7 @@ class _AudiencePollState extends State<AudiencePoll> {
   bool isVoting = true;
 
   votingMachine() {
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 5), () {
       setState(() {
         if (widget.opt1 == widget.correctAns) {
           opt1votes = Random().nextInt(100);
@@ -73,20 +73,74 @@ class _AudiencePollState extends State<AudiencePoll> {
       backgroundColor: Colors.orange,
       body: Center(
         child: Container(
+          margin: EdgeInsets.symmetric(vertical: 250, horizontal: 20),
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-          child: Column(
-            children: [
-              Text("Audience Poll Lifeline->"),
-              Text("Question- ${widget.ques}"),
-              Text(isVoting ? "Audience is voting " : "Here are the results"),
-              isVoting ? LinearProgressIndicator() : Container(),
-              //To Do- Add bars equivalent to votes
-              //To Do- display warning of 10 sec
-              Text("${widget.opt1}\t\t${opt1votes}votes"),
-              Text("${widget.opt2}\t\t${opt2votes}votes"),
-              Text("${widget.opt3}\t\t${opt3votes}votes"),
-              Text("${widget.opt4}\t\t${opt4votes}votes"),
-            ],
+          child: Card(
+            color: Colors.white,
+            elevation: 3,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Audience Poll Lifeline->",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Question- ${widget.ques}",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  isVoting ? "Audience is voting " : "Here are the results",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w800,
+                    fontSize: 25,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                isVoting ? LinearProgressIndicator() : Container(),
+                SizedBox(
+                  height: 20,
+                ),
+                //To Do- Add bars equivalent to votes
+                //To Do- display warning of 10 sec
+                Text(
+                  "${widget.opt1}\t\t${opt1votes}votes",
+                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "${widget.opt2}\t\t${opt2votes}votes",
+                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "${widget.opt3}\t\t${opt3votes}votes",
+                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "${widget.opt4}\t\t${opt4votes}votes",
+                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
         ),
       ),
