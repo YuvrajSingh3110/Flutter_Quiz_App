@@ -1,12 +1,15 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:quiz_app/Views/login.dart';
 import 'package:quiz_app/services/localdb.dart';
 import 'package:quiz_app/views/home.dart';
 
 Future <void> main() async{
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
@@ -42,11 +45,18 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     return OverlaySupport.global(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         home: isLogin ? const Home() : const Login(),
+        // AnimatedSplashScreen(
+        //   duration: 2000,
+        //   splash: 'lib/assets/images/mushroom.png', splashIconSize: 100,
+        //   nextScreen: isLogin ? const Home() : const Login(),
+        //   splashTransition: SplashTransition.fadeTransition,
+        // )
       ),
     );
   }

@@ -46,10 +46,27 @@ dependencies:
   carousel_slider: any
   confetti: any
   http: any
+  animated_splash_screen: any
+  flutter_native_splash: any
+  flutter_launcher_icons: any
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: lib/assets/images/mushroom.png
+  #android_12:
+    #image: lib/assets/images/mushroom960px.png
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "lib/assets/images/play_store_512.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "lib/assets/images/play_store_512.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
