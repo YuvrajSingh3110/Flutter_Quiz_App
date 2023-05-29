@@ -17,7 +17,6 @@ class QuizQues extends StatefulWidget {
 
 class _QuizQuesState extends State<QuizQues> {
   QuestionModel questionModel = new QuestionModel();
-  late String ytLink;
 
   genQuestion() async {
     await QuizQuesCreator.generateQuizQues(
@@ -26,7 +25,7 @@ class _QuizQuesState extends State<QuizQues> {
       setState(() {
         questionModel.question = quesData["question"];
         questionModel.correctAnswer = quesData["correct_ans"];
-        ytLink = quesData["ans_YT_id"];
+
         List options = [
           quesData["opt1"],
           quesData["opt2"],
@@ -79,7 +78,6 @@ class _QuizQuesState extends State<QuizQues> {
         correctAns: questionModel.correctAnswer,
         quizId: widget.quizID,
         quizMoney: widget.quizMoney,
-        ytLink: ytLink,
       ),
       body: Container(
         color: Colors.orangeAccent,

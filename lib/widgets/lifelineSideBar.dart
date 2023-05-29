@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/services/localdb.dart';
 import 'package:quiz_app/views/askTheExpert.dart';
@@ -14,18 +15,17 @@ class LifelineDrawer extends StatefulWidget {
   String correctAns;
   String quizId;
   String quizMoney;
-  String ytLink;
 
-  LifelineDrawer(
-      {required this.question,
-      required this.opt1,
-      required this.opt2,
-      required this.opt3,
-      required this.opt4,
-      required this.correctAns,
-      required this.quizId,
-      required this.quizMoney,
-      required this.ytLink});
+  LifelineDrawer({
+    required this.question,
+    required this.opt1,
+    required this.opt2,
+    required this.opt3,
+    required this.opt4,
+    required this.correctAns,
+    required this.quizId,
+    required this.quizMoney,
+  });
 
   @override
   State<LifelineDrawer> createState() => _LifelineDrawerState();
@@ -204,13 +204,33 @@ class _LifelineDrawerState extends State<LifelineDrawer> {
               InkWell(
                 onTap: () async {
                   if (await checkExpAvail()) {
+                    String ytUrl = "";
+                    await FirebaseFirestore.instance
+                        .collection("quizzes")
+                        .doc(widget.quizId)
+                        .collection("Question")
+                        .where("question", isEqualTo: widget.question)
+                        .get()
+                        .then((value) {
+                      print("ASK THE EXPERT HERE");
+                      print(widget.quizId);
+                      print(widget.question);
+                      value.docs.forEach((element) {
+                        print("YT LINK IS HERE");
+
+                        print(element.data()["ans_YT_id"]);
+                        ytUrl = element.data()["ans_YT_id"];
+                      });
+
+                      print(value.docs.elementAt(0).data()["ans_YT_id"]);
+                    });
                     await LocalDB.saveExp(false);
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => AskTheExpert(
                                 quizQues: widget.question,
-                                ytURL: widget.ytLink)));
+                                ytURL: ytUrl)));
                   } else {
                     print("ASK TEH EXPERT IS ALREADY IS ALREADY USED");
                   }
@@ -266,22 +286,44 @@ class _LifelineDrawerState extends State<LifelineDrawer> {
                   reverse: true,
                   itemCount: 15,
                   itemBuilder: (context, index) {
+                    if ((index + 1) * 100 == widget.quizMoney) {
+                      return ListTile(
+                          leading: Text(
+                            "${index + 1}.",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18,
+                                color: Colors.grey),
+                          ),
+                          title: Text(
+                            "Rs. ${(index + 1) * 100}",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 18),
+                          ),
+                          trailing: const Icon(
+                            Icons.circle,
+                            color: Colors.orange,
+                          ));
+                    }
                     return ListTile(
+                      tileColor: Colors.deepOrange,
                       leading: Text(
                         "${index + 1}.",
                         style: const TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 18,
-                            color: Colors.grey),
+                            color: Colors.white),
                       ),
                       title: Text(
-                        "Rs. ${(index + 1) * 5000}",
+                        "Rs. ${(index + 1) * 100}",
                         style: const TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 18),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                            color: Colors.white),
                       ),
                       trailing: const Icon(
                         Icons.circle,
-                        color: Colors.orange,
+                        color: Colors.orangeAccent,
                       ),
                     );
                   }),
