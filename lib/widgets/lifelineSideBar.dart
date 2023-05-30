@@ -232,7 +232,7 @@ class _LifelineDrawerState extends State<LifelineDrawer> {
                                 quizQues: widget.question,
                                 ytURL: ytUrl)));
                   } else {
-                    print("ASK TEH EXPERT IS ALREADY IS ALREADY USED");
+                    print("ASK THE EXPERT IS ALREADY IS ALREADY USED");
                   }
                 },
                 child: Column(
