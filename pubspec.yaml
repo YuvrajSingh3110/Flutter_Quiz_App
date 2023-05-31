@@ -50,6 +50,7 @@ dependencies:
   flutter_native_splash: any
   flutter_launcher_icons: any
   youtube_player_flutter: any
+  async: any
 
 dev_dependencies:
   flutter_test:

@@ -62,7 +62,7 @@ class FireDB {
   }
 
   static updateMoney(String amount) async {
-    if (amount != "2500") {
+    if (amount != "50") {
       final FirebaseAuth _myauth = FirebaseAuth.instance;
       await FirebaseFirestore.instance
           .collection("User")

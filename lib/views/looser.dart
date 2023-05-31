@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class Looser extends StatelessWidget {
-  String moneyWon;
+  int moneyWon;
   String correctAns;
   Looser({required this.moneyWon, required this.correctAns});
 
