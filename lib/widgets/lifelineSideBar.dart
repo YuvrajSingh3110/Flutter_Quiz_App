@@ -229,8 +229,7 @@ class _LifelineDrawerState extends State<LifelineDrawer> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => AskTheExpert(
-                                quizQues: widget.question,
-                                ytURL: ytUrl)));
+                                quizQues: widget.question, ytURL: ytUrl)));
                   } else {
                     print("ASK THE EXPERT IS ALREADY IS ALREADY USED");
                   }
@@ -281,52 +280,55 @@ class _LifelineDrawerState extends State<LifelineDrawer> {
             physics: const NeverScrollableScrollPhysics(),
             child: SizedBox(
               height: 550,
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  reverse: true,
-                  itemCount: 15,
-                  itemBuilder: (context, index) {
-                    if ((index + 1) * 100 == widget.quizMoney) {
-                      return ListTile(
+              child: Container(
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    reverse: true,
+                    itemCount: 15,
+                    itemBuilder: (context, index) {
+                      if ((index + 1) * 100 == int.parse(widget.quizMoney)) {
+                        print("if called");
+                        return ListTile(
+                            tileColor: Colors.deepOrange,
+                            leading: Text(
+                              "${index + 1}.",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
+                                  color: Colors.white),
+                            ),
+                            title: Text(
+                              "Rs. ${(index + 1) * 100}",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w500, fontSize: 18, color: Colors.white),
+                            ),
+                            trailing: const Icon(
+                              Icons.circle,
+                              color: Colors.orange,
+                            ));
+                      } else {
+                        print("else called");
+                        return ListTile(
                           leading: Text(
                             "${index + 1}.",
                             style: const TextStyle(
                                 fontWeight: FontWeight.w500,
-                                fontSize: 18,
-                                color: Colors.grey),
+                                fontSize: 18),
                           ),
                           title: Text(
                             "Rs. ${(index + 1) * 100}",
                             style: const TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 18),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18),
                           ),
                           trailing: const Icon(
                             Icons.circle,
-                            color: Colors.orange,
-                          ));
-                    }
-                    return ListTile(
-                      tileColor: Colors.deepOrange,
-                      leading: Text(
-                        "${index + 1}.",
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18,
-                            color: Colors.white),
-                      ),
-                      title: Text(
-                        "Rs. ${(index + 1) * 100}",
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18,
-                            color: Colors.white),
-                      ),
-                      trailing: const Icon(
-                        Icons.circle,
-                        color: Colors.orangeAccent,
-                      ),
-                    );
-                  }),
+                            color: Colors.orangeAccent,
+                          ),
+                        );
+                      }
+                    }),
+              ),
             ),
           )
         ]),

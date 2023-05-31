@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
-
   String name;
   String profileUrl;
   String rank;
   String level;
   String money;
+
   Profile({
     required this.name,
     required this.profileUrl,
     required this.rank,
     required this.level,
     required this.money,
-});
+  });
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -49,12 +49,13 @@ class _ProfileState extends State<Profile> {
               ),
               child: Column(
                 children: [
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 15,
+                  ),
                   Stack(
                     children: [
                       CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              widget.profileUrl),
+                          backgroundImage: NetworkImage(widget.profileUrl),
                           radius: 50),
                       Positioned(
                         right: 0.0,
@@ -62,10 +63,11 @@ class _ProfileState extends State<Profile> {
                         child: Container(
                           padding: EdgeInsets.all(3),
                           decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white
+                              shape: BoxShape.circle, color: Colors.white),
+                          child: Icon(
+                            Icons.edit,
+                            color: Colors.orangeAccent,
                           ),
-                          child: Icon(Icons.edit, color: Colors.orangeAccent,),
                         ),
                       )
                     ],
@@ -76,6 +78,16 @@ class _ProfileState extends State<Profile> {
                   Text(
                     widget.name,
                     style: TextStyle(fontSize: 30, color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    "Rs.${widget.money}",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                   SizedBox(
                     height: 20,
@@ -131,10 +143,18 @@ class _ProfileState extends State<Profile> {
               child: ListView.separated(
                 shrinkWrap: true,
                 itemCount: 20,
-                separatorBuilder: (context, index) => Divider(color: Colors.orange.withOpacity(0.3), thickness: 1, indent: 10, endIndent: 10,),
+                separatorBuilder: (context, index) => Divider(
+                  color: Colors.orange.withOpacity(0.3),
+                  thickness: 1,
+                  indent: 10,
+                  endIndent: 10,
+                ),
                 itemBuilder: (context, index) {
                   return ListTile(
-                    leading: Text("#${index + 1}", style: TextStyle(fontWeight: FontWeight.w500),),
+                    leading: Text(
+                      "#${index + 1}",
+                      style: TextStyle(fontWeight: FontWeight.w500),
+                    ),
                     contentPadding: EdgeInsets.only(left: 20, right: 20),
                     title: Row(
                       children: [
@@ -142,12 +162,16 @@ class _ProfileState extends State<Profile> {
                           backgroundImage: NetworkImage(
                               "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1331&q=80"),
                         ),
-                        SizedBox(width: 10,),
+                        SizedBox(
+                          width: 10,
+                        ),
                         Text("Yato"),
                       ],
                     ),
                     trailing: Text(
-                        "Rs.${(2000000 / (index + 1)).toString().substring(0, 7)}", style: TextStyle(fontWeight: FontWeight.w500),),
+                      "Rs.${(2000000 / (index + 1)).toString().substring(0, 7)}",
+                      style: TextStyle(fontWeight: FontWeight.w500),
+                    ),
                   );
                 },
               ),
