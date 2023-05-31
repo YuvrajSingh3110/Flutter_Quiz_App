@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app/services/localdb.dart';
 
 class Profile extends StatefulWidget {
   String name;
@@ -20,6 +22,28 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  late List<QueryDocumentSnapshot<Map<String, dynamic>>> leaderboard;
+  getLeaderboard() async {
+    await FirebaseFirestore.instance
+        .collection("User")
+        .orderBy("money")
+        .get()
+        .then((value) {
+      setState(() {
+        leaderboard = value.docs.reversed.toList();
+        widget.rank = (leaderboard.indexWhere((element) => element.data()["name"] == widget.name)+1).toString();
+      });
+    });
+    await LocalDB.saveRank(widget.rank);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getLeaderboard();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,42 +162,47 @@ class _ProfileState extends State<Profile> {
                   "Leaderboard",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
                 )),
-            SizedBox(
-              height: 370,
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemCount: 20,
-                separatorBuilder: (context, index) => Divider(
-                  color: Colors.orange.withOpacity(0.3),
-                  thickness: 1,
-                  indent: 10,
-                  endIndent: 10,
+            RefreshIndicator(
+              onRefresh: () async{
+                getLeaderboard();
+              },
+              child: SizedBox(
+                height: 370,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: leaderboard.length,
+                  separatorBuilder: (context, index) => Divider(
+                    color: Colors.orange.withOpacity(0.3),
+                    thickness: 1,
+                    indent: 10,
+                    endIndent: 10,
+                  ),
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      leading: Text(
+                        "#${index + 1}",
+                        style: TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                      contentPadding: EdgeInsets.only(left: 20, right: 20),
+                      title: Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundImage:
+                                NetworkImage(leaderboard[index].data()["photoUrl"]),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(leaderboard[index].data()["name"]),
+                        ],
+                      ),
+                      trailing: Text(
+                        "Rs.${leaderboard[index].data()["money"]}",
+                        style: TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                    );
+                  },
                 ),
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: Text(
-                      "#${index + 1}",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    contentPadding: EdgeInsets.only(left: 20, right: 20),
-                    title: Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1331&q=80"),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text("Yato"),
-                      ],
-                    ),
-                    trailing: Text(
-                      "Rs.${(2000000 / (index + 1)).toString().substring(0, 7)}",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                  );
-                },
               ),
             )
           ],

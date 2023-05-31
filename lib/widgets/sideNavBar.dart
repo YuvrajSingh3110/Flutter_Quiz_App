@@ -10,8 +10,9 @@ class SideNavBar extends StatelessWidget {
   String rank;
   String profileUrl;
   String level;
-  SideNavBar(@required this.name, @required this.money, @required this.rank,
-      @required this.profileUrl, @required this.level);
+
+  SideNavBar({required this.name, required this.money, required this.rank,
+      required this.profileUrl, required this.level});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class SideNavBar extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Profile(name: name, profileUrl: profileUrl, rank: rank, level: level, money: money,)));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Profile(name: name, profileUrl: profileUrl, rank: rank, level: level, money: money)));
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +68,7 @@ class SideNavBar extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.only(left: 20),
                     child: Text(
-                      "Leaderboard - $rank th pos",
+                      "Leaderboard - #$rank",
                       style: const TextStyle(
                           fontSize: 20,
                           color: Colors.white,

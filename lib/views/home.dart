@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String name = "User Name";
+  String name = "UserName";
   String money = "---";
   String rank = "---";
   String profileUrl = "---";
@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
       },
       child: Scaffold(
         appBar: AppBar(backgroundColor: Colors.orangeAccent),
-        drawer: SideNavBar(name, money, rank, profileUrl, level),
+        drawer: SideNavBar(name: name, money: money, rank: rank, profileUrl: profileUrl, level: level),
         body: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Container(
