@@ -44,6 +44,9 @@ class _FiftyFiftyState extends State<FiftyFifty> {
     // TODO: implement initState
     super.initState();
     fetchWrongOptiions();
+    Future.delayed(Duration(seconds: 5)); (){
+      Navigator.pop(context);
+    };
   }
 
   @override
@@ -72,6 +75,11 @@ class _FiftyFiftyState extends State<FiftyFifty> {
               Text(
                 "${wrongOption[0]} and ${wrongOption[1]} are INCORRECT OPTIONS",
                 style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                "You will be redirected to the main screen in 5 sec",
+                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),
                 textAlign: TextAlign.center,
               )
             ],

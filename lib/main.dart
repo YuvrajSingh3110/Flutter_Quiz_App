@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
 
   getLoggedinState() async{
     await LocalDB.getUserId().then((value) {
+      print(value);
       setState(() {
         if(value.toString() != "null"){
           isLogin = true;
